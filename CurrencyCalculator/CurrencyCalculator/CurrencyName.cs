@@ -8,7 +8,10 @@ namespace CurrencyCalculator
 {
     public class CurrencyName
     {
-        public string Code { get; set; }
-        public float Value { get; set; }
+        public CurrencyInfo USD { get; set; }
+
+        public CurrencyInfo EUR { get; set; }
+
+        public CurrencyInfo UAH{ get; set; }
     }
 }

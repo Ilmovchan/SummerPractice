@@ -29,7 +29,8 @@ namespace CurrencyCalculator
 
             CurrencyResponce currencyResponce = JsonConvert.DeserializeObject<CurrencyResponce>(getResponce());
 
-            this.ResultField.Text = Convert.ToString(currencyResponce.data.Value);
+            this.ResultField.Text = "EURO: " + Convert.ToString(currencyResponce.data.EUR.value);
+            this.ExchangeField.Text = "UAH: " + Convert.ToString(currencyResponce.data.UAH.value);
 
         }
         public string getResponce()
