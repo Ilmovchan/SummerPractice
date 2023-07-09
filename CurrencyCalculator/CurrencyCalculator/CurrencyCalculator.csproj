@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrencyInfo.cs" />
+    <Compile Include="CurrencyName.cs" />
     <Compile Include="CurrencyResponce.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>

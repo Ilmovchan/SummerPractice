@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Windows.Forms;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace CurrencyCalculator
 {
@@ -22,22 +23,29 @@ namespace CurrencyCalculator
 
         private void ConvertButton_Click(object sender, EventArgs e)
         {
-            String originalValue = OriginalValueField.Text;
-            String originalCurrency = OriginalCurrencyField.Text;
-            String secondaryCurrency = SecondaryCurrencyField.Text;
+            string originalValue = OriginalValueField.Text;
+            string originalCurrency = OriginalCurrencyField.Text;
+            string secondaryCurrency = SecondaryCurrencyField.Text;
 
-            String url = "https://api.currencyapi.com/v3/latest?apikey=t6eP1x8C2Jo6yluiIdPqGJD8XMTeEMp8bs5m0CwP";
-            HttpWebRequest httpsWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            HttpWebResponse httpWebResponse = (HttpWebResponse)httpsWebRequest.GetResponse();
+            CurrencyResponce currencyResponce = JsonConvert.DeserializeObject<CurrencyResponce>(getResponce());
 
+            this.ResultField.Text = Convert.ToString(currencyResponce.data.Value);
+
+        }
+        public string getResponce()
+        {
+            string url = "https://api.currencyapi.com/v3/latest?apikey=t6eP1x8C2Jo6yluiIdPqGJD8XMTeEMp8bs5m0CwP";
             string responce;
 
+            HttpWebRequest httpsWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse httpWebResponse = (HttpWebResponse)httpsWebRequest.GetResponse();
+            
             using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
             {
                 responce = streamReader.ReadToEnd();
             }
 
-            Console.WriteLine(responce);
+            return responce;
         }
     }
 }
