@@ -68,7 +68,6 @@
             this.OriginalValueField.Size = new System.Drawing.Size(216, 128);
             this.OriginalValueField.TabIndex = 1;
             this.OriginalValueField.Text = "";
-         
             // 
             // ExchangeField
             // 
@@ -82,6 +81,7 @@
             this.ExchangeField.Size = new System.Drawing.Size(215, 97);
             this.ExchangeField.TabIndex = 2;
             this.ExchangeField.Text = "";
+            
             // 
             // SecondaryCurrencyField
             // 
@@ -119,7 +119,6 @@
             this.label1.Size = new System.Drawing.Size(416, 17);
             this.label1.TabIndex = 11;
             this.label1.Text = "Оберіть необхідну валюту з якої хочете конвертувати";
-            
             // 
             // label2
             // 

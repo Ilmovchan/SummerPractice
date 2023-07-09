@@ -11,6 +11,8 @@ using System.Net;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
+using System.Reflection;
+using Newtonsoft.Json.Linq;
 
 namespace CurrencyCalculator
 {
@@ -29,13 +31,24 @@ namespace CurrencyCalculator
 
             CurrencyResponce currencyResponce = JsonConvert.DeserializeObject<CurrencyResponce>(getResponce());
 
-            this.ResultField.Text = "EURO: " + Convert.ToString(currencyResponce.data.EUR.value);
-            this.ExchangeField.Text = "UAH: " + Convert.ToString(currencyResponce.data.UAH.value);
+            PropertyInfo[] properties = typeof(CurrencyInfo).GetProperties();
+            double value = 0.0;
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.Name == originalCurrency)
+                {
+                    ResultField.Text = "Congrats";
+                    break;
+                }
+                else ResultField.Text = "no(";
+            }
 
+            
         }
+        
         public string getResponce()
         {
-            string url = "https://api.currencyapi.com/v3/latest?apikey=t6eP1x8C2Jo6yluiIdPqGJD8XMTeEMp8bs5m0CwP";
+            string url = "https://openexchangerates.org/api/latest.json?app_id=5b79ee6f285c4818b7fb7acd54c174b6";
             string responce;
 
             HttpWebRequest httpsWebRequest = (HttpWebRequest)WebRequest.Create(url);

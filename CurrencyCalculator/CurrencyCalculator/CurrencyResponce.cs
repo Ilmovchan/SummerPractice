@@ -8,6 +8,6 @@ namespace CurrencyCalculator
 {
     public class CurrencyResponce
     {
-        public CurrencyName data { get; set; }
+        public CurrencyInfo rates { get; set; }
     }
 }

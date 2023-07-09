@@ -8,7 +8,8 @@ namespace CurrencyCalculator
 {
     public class CurrencyInfo
     {
-        public string code { get; set; }
-        public double value { get; set; }
+        public string UAH { get; set; }
+        public string USD { get; set; }
+        public string EUR { get; set; }
     }
 }
