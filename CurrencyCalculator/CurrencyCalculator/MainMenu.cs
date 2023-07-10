@@ -25,28 +25,43 @@ namespace CurrencyCalculator
 
         private void ConvertButton_Click(object sender, EventArgs e)
         {
-            string originalValue = OriginalValueField.Text;
-            string originalCurrency = OriginalCurrencyField.Text;
-            string secondaryCurrency = SecondaryCurrencyField.Text;
+            string cashAmount = CashAmountField.Text;
 
+            double firstCurrencyValue = getCurrencyValue(OriginalCurrencyField.Text);
+            double secondCurrencyValue = getCurrencyValue(SecondCurrencyField.Text);
+
+            ResultField.Text = Convert.ToString(currencyConvert(firstCurrencyValue, secondCurrencyValue, 100));
+
+        }
+
+        private double currencyConvert(double firstValue, double secondValue, double cashAmount)
+        {
+
+            return cashAmount * (secondValue / firstValue);
+        }
+        private double getCurrencyValue(string originalCurrency)
+        {
             CurrencyResponce currencyResponce = JsonConvert.DeserializeObject<CurrencyResponce>(getResponce());
 
             PropertyInfo[] properties = typeof(CurrencyInfo).GetProperties();
-            double value = 0.0;
             foreach (PropertyInfo property in properties)
             {
                 if (property.Name == originalCurrency)
                 {
-                    ResultField.Text = "Congrats";
-                    break;
+                    CurrencyInfo currencyInfo = currencyResponce.rates;
+                    object firstValue = property.GetValue(currencyInfo);
+                    if (firstValue != null)
+                    {
+                        return Convert.ToDouble(firstValue);
+                    }
                 }
-                else ResultField.Text = "no(";
             }
 
-            
+            return 0;
         }
-        
-        public string getResponce()
+
+
+        private string getResponce()
         {
             string url = "https://openexchangerates.org/api/latest.json?app_id=5b79ee6f285c4818b7fb7acd54c174b6";
             string responce;

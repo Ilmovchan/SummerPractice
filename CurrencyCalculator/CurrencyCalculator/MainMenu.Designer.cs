@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.ConvertButton = new System.Windows.Forms.Button();
-            this.OriginalValueField = new System.Windows.Forms.RichTextBox();
+            this.CashAmountField = new System.Windows.Forms.RichTextBox();
             this.ExchangeField = new System.Windows.Forms.RichTextBox();
-            this.SecondaryCurrencyField = new System.Windows.Forms.ComboBox();
+            this.SecondCurrencyField = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,14 +60,14 @@
             // 
             // OriginalValueField
             // 
-            this.OriginalValueField.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.OriginalValueField.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.OriginalValueField.Location = new System.Drawing.Point(47, 79);
-            this.OriginalValueField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.OriginalValueField.Name = "OriginalValueField";
-            this.OriginalValueField.Size = new System.Drawing.Size(216, 128);
-            this.OriginalValueField.TabIndex = 1;
-            this.OriginalValueField.Text = "";
+            this.CashAmountField.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.CashAmountField.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CashAmountField.Location = new System.Drawing.Point(47, 79);
+            this.CashAmountField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CashAmountField.Name = "OriginalValueField";
+            this.CashAmountField.Size = new System.Drawing.Size(216, 128);
+            this.CashAmountField.TabIndex = 1;
+            this.CashAmountField.Text = "";
             // 
             // ExchangeField
             // 
@@ -81,22 +81,21 @@
             this.ExchangeField.Size = new System.Drawing.Size(215, 97);
             this.ExchangeField.TabIndex = 2;
             this.ExchangeField.Text = "";
-            
             // 
             // SecondaryCurrencyField
             // 
-            this.SecondaryCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.SecondaryCurrencyField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SecondaryCurrencyField.FormattingEnabled = true;
-            this.SecondaryCurrencyField.Items.AddRange(new object[] {
+            this.SecondCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.SecondCurrencyField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SecondCurrencyField.FormattingEnabled = true;
+            this.SecondCurrencyField.Items.AddRange(new object[] {
             "USD",
             "EUR",
             "UAH"});
-            this.SecondaryCurrencyField.Location = new System.Drawing.Point(325, 184);
-            this.SecondaryCurrencyField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.SecondaryCurrencyField.Name = "SecondaryCurrencyField";
-            this.SecondaryCurrencyField.Size = new System.Drawing.Size(412, 23);
-            this.SecondaryCurrencyField.TabIndex = 5;
+            this.SecondCurrencyField.Location = new System.Drawing.Point(325, 184);
+            this.SecondCurrencyField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SecondCurrencyField.Name = "SecondaryCurrencyField";
+            this.SecondCurrencyField.Size = new System.Drawing.Size(412, 23);
+            this.SecondCurrencyField.TabIndex = 5;
             // 
             // label3
             // 
@@ -193,16 +192,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.SecondaryCurrencyField);
+            this.Controls.Add(this.SecondCurrencyField);
             this.Controls.Add(this.ExchangeField);
-            this.Controls.Add(this.OriginalValueField);
+            this.Controls.Add(this.CashAmountField);
             this.Controls.Add(this.ConvertButton);
             this.Font = new System.Drawing.Font("Cascadia Code", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.Navy;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainMenu";
-            this.Text = "Конвертер валют";
+            this.Text = "Валютний калькулятор";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,9 +210,9 @@
         #endregion
 
         private System.Windows.Forms.Button ConvertButton;
-        private System.Windows.Forms.RichTextBox OriginalValueField;
+        private System.Windows.Forms.RichTextBox CashAmountField;
         private System.Windows.Forms.RichTextBox ExchangeField;
-        private System.Windows.Forms.ComboBox SecondaryCurrencyField;
+        private System.Windows.Forms.ComboBox SecondCurrencyField;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
