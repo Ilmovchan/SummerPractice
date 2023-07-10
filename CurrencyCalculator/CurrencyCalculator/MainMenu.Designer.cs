@@ -90,7 +90,13 @@
             this.SecondCurrencyField.Items.AddRange(new object[] {
             "USD",
             "EUR",
-            "UAH"});
+            "UAH",
+            "PLN",
+            "GBP",
+            "AUD",
+            "CZK",
+            "CNY",
+            "BTC"});
             this.SecondCurrencyField.Location = new System.Drawing.Point(325, 184);
             this.SecondCurrencyField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SecondCurrencyField.Name = "SecondCurrencyField";
@@ -138,7 +144,13 @@
             this.OriginalCurrencyField.Items.AddRange(new object[] {
             "USD",
             "EUR",
-            "UAH"});
+            "UAH",
+            "PLN",
+            "GBP",
+            "AUD",
+            "CZK",
+            "CNY",
+            "BTC"});
             this.OriginalCurrencyField.Location = new System.Drawing.Point(325, 79);
             this.OriginalCurrencyField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OriginalCurrencyField.Name = "OriginalCurrencyField";
