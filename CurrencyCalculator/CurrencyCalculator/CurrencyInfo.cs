@@ -11,5 +11,11 @@ namespace CurrencyCalculator
         public string UAH { get; set; }
         public string USD { get; set; }
         public string EUR { get; set; }
+        public string PLN { get; set; }
+        public string GBP { get; set; }
+        public string AUD { get; set; }
+        public string CZK { get; set; }
+        public string CNY { get; set; }
+        public string BTC { get; set; }
     }
 }

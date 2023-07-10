@@ -35,6 +35,7 @@ namespace CurrencyCalculator
             Double.TryParse(CashAmountField.Text, out double cashAmount);
 
             ResultField.Text = Convert.ToString(currencyConvert(firstCurrencyValue, secondCurrencyValue, cashAmount));
+            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(firstCurrencyValue/secondCurrencyValue);
         }
 
         private double currencyConvert(double firstValue, double secondValue, double cashAmount)
@@ -51,10 +52,10 @@ namespace CurrencyCalculator
             {
                 if (property.Name == originalCurrency)
                 {
-                    object firstValue = property.GetValue(currencyInfo);
-                    if (firstValue != null)
+                    object value = property.GetValue(currencyInfo);
+                    if (value != null)
                     {
-                        return Convert.ToDouble(firstValue);
+                        return Convert.ToDouble(value);
                     }
                 }
             }
