@@ -19,12 +19,17 @@ namespace CurrencyCalculator
 {
     public partial class MainMenu : Form
     {
-        private CurrencyResponce currencyResponse;
+        
+        private static CurrencyResponse currencyResponse;
 
         public MainMenu()
         {
             InitializeComponent();
-            currencyResponse = getResponse();
+
+            if (currencyResponse == null)
+            {
+                currencyResponse = getResponse();
+            }
         }
 
         private void ConvertButton_Click(object sender, EventArgs e)
@@ -34,8 +39,10 @@ namespace CurrencyCalculator
 
             Double.TryParse(CashAmountField.Text, out double cashAmount);
 
-            ResultField.Text = Convert.ToString(currencyConvert(firstCurrencyValue, secondCurrencyValue, cashAmount));
-            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(firstCurrencyValue/secondCurrencyValue);
+            double resultValue = currencyConvert(firstCurrencyValue, secondCurrencyValue, cashAmount);
+
+            ResultField.Text = resultValue.ToString("0.00");
+            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(Math.Round(firstCurrencyValue/secondCurrencyValue , 2));
         }
 
         private double currencyConvert(double firstValue, double secondValue, double cashAmount)
@@ -63,10 +70,10 @@ namespace CurrencyCalculator
             return 0;
         }
 
-        private CurrencyResponce getResponse()
+        private CurrencyResponse getResponse()
         {
             string url = "https://openexchangerates.org/api/latest.json?app_id=5b79ee6f285c4818b7fb7acd54c174b6";
-            CurrencyResponce currencyResponse;
+            CurrencyResponse currencyResponse;
 
             HttpWebRequest httpsWebRequest = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpsWebRequest.GetResponse();
@@ -74,7 +81,7 @@ namespace CurrencyCalculator
             using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
             {
                 string response = streamReader.ReadToEnd();
-                currencyResponse = JsonConvert.DeserializeObject<CurrencyResponce>(response);
+                currencyResponse = JsonConvert.DeserializeObject<CurrencyResponse>(response);
             }
 
             return currencyResponse;

@@ -74,6 +74,7 @@
             this.ExchangeField.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ExchangeField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ExchangeField.Cursor = System.Windows.Forms.Cursors.No;
+            this.ExchangeField.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ExchangeField.Location = new System.Drawing.Point(522, 304);
             this.ExchangeField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExchangeField.Name = "ExchangeField";
@@ -162,6 +163,7 @@
             this.ResultField.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ResultField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ResultField.Cursor = System.Windows.Forms.Cursors.No;
+            this.ResultField.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ResultField.Location = new System.Drawing.Point(47, 304);
             this.ResultField.Name = "ResultField";
             this.ResultField.ReadOnly = true;

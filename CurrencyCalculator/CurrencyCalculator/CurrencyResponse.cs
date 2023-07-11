@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CurrencyCalculator
 {
-    public class CurrencyResponce
+    public class CurrencyResponse
     {
         public CurrencyInfo rates { get; set; }
     }
