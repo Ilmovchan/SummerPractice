@@ -40,8 +40,8 @@
             this.ResultField = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SettingsButton = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.SuspendLayout();
             // 
             // ConvertButton
@@ -195,14 +195,16 @@
             this.label4.TabIndex = 18;
             this.label4.Text = "Введіть кількість грошей:";
             // 
-            // pictureBox1
+            // SettingsButton
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(767, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 27);
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
+            this.SettingsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingsButton.Image")));
+            this.SettingsButton.Location = new System.Drawing.Point(767, 22);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(25, 24);
+            this.SettingsButton.TabIndex = 19;
+            this.SettingsButton.TabStop = false;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // MainMenu
             // 
@@ -210,7 +212,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(816, 460);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ResultField);
@@ -230,7 +232,7 @@
             this.MinimumSize = new System.Drawing.Size(832, 499);
             this.Name = "MainMenu";
             this.Text = "Валютний калькулятор";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,7 +251,7 @@
         private System.Windows.Forms.RichTextBox ResultField;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox SettingsButton;
     }
 }
 

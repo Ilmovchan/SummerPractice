@@ -21,6 +21,7 @@ namespace CurrencyCalculator
     {
         
         private static CurrencyResponse currencyResponse;
+        private Settings settingsForm;
 
         public MainMenu()
         {
@@ -85,6 +86,19 @@ namespace CurrencyCalculator
             }
 
             return currencyResponse;
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            if (settingsForm == null || settingsForm.IsDisposed)
+            {
+                settingsForm = new Settings(); // Создаем экземпляр формы Settings только при первом нажатии кнопки или если предыдущий экземпляр закрыт
+                settingsForm.Show();
+            }
+            else
+            {
+                settingsForm.BringToFront(); // Показываем уже существующий экземпляр формы Settings, если он уже открыт
+            }
         }
     }
 }
