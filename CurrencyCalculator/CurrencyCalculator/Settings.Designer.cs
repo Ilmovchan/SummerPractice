@@ -32,14 +32,13 @@
             this.ReturnButton = new System.Windows.Forms.PictureBox();
             this.AcceptButton = new System.Windows.Forms.PictureBox();
             this.ChangeLanguageField = new System.Windows.Forms.ComboBox();
-            this.ChangeThemeField = new System.Windows.Forms.ComboBox();
+            this.ChangeColorThemeField = new System.Windows.Forms.ComboBox();
             this.ChangeSeparatorSymbolField = new System.Windows.Forms.ComboBox();
-            this.ChangeSymbolQuantityAfterSeparatorField = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
+            this.ChangeNumbersAfterSeparatorField = new System.Windows.Forms.NumericUpDown();
+            this.ChangeNumbersAfterSeparatorText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ReturnButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AcceptButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeNumbersAfterSeparatorField)).BeginInit();
             this.SuspendLayout();
             // 
             // ReturnButton
@@ -69,26 +68,26 @@
             this.ChangeLanguageField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ChangeLanguageField.FormattingEnabled = true;
             this.ChangeLanguageField.Items.AddRange(new object[] {
-            "Англійська",
-            "Українська"});
+            "Українська",
+            "Англійська"});
             this.ChangeLanguageField.Location = new System.Drawing.Point(12, 64);
             this.ChangeLanguageField.Name = "ChangeLanguageField";
             this.ChangeLanguageField.Size = new System.Drawing.Size(192, 24);
             this.ChangeLanguageField.TabIndex = 2;
             this.ChangeLanguageField.Text = "Мова";
             // 
-            // ChangeThemeField
+            // ChangeColorThemeField
             // 
-            this.ChangeThemeField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ChangeThemeField.FormattingEnabled = true;
-            this.ChangeThemeField.Items.AddRange(new object[] {
+            this.ChangeColorThemeField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ChangeColorThemeField.FormattingEnabled = true;
+            this.ChangeColorThemeField.Items.AddRange(new object[] {
             "Світла",
             "Темна"});
-            this.ChangeThemeField.Location = new System.Drawing.Point(12, 118);
-            this.ChangeThemeField.Name = "ChangeThemeField";
-            this.ChangeThemeField.Size = new System.Drawing.Size(192, 24);
-            this.ChangeThemeField.TabIndex = 3;
-            this.ChangeThemeField.Text = "Кольорова схема";
+            this.ChangeColorThemeField.Location = new System.Drawing.Point(12, 118);
+            this.ChangeColorThemeField.Name = "ChangeColorThemeField";
+            this.ChangeColorThemeField.Size = new System.Drawing.Size(192, 24);
+            this.ChangeColorThemeField.TabIndex = 3;
+            this.ChangeColorThemeField.Text = "Кольорова схема";
             // 
             // ChangeSeparatorSymbolField
             // 
@@ -103,60 +102,59 @@
             this.ChangeSeparatorSymbolField.TabIndex = 4;
             this.ChangeSeparatorSymbolField.Text = "Символ роздільника";
             // 
-            // ChangeSymbolQuantityAfterSeparatorField
+            // ChangeNumbersAfterSeparatorField
             // 
-            this.ChangeSymbolQuantityAfterSeparatorField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ChangeSymbolQuantityAfterSeparatorField.FormattingEnabled = true;
-            this.ChangeSymbolQuantityAfterSeparatorField.Items.AddRange(new object[] {
-            ".",
-            ","});
-            this.ChangeSymbolQuantityAfterSeparatorField.Location = new System.Drawing.Point(12, 226);
-            this.ChangeSymbolQuantityAfterSeparatorField.Name = "ChangeSymbolQuantityAfterSeparatorField";
-            this.ChangeSymbolQuantityAfterSeparatorField.Size = new System.Drawing.Size(192, 24);
-            this.ChangeSymbolQuantityAfterSeparatorField.TabIndex = 5;
-            this.ChangeSymbolQuantityAfterSeparatorField.Text = "Символів п-я роздільника";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Hexadecimal = true;
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 202);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(192, 21);
-            this.numericUpDown1.TabIndex = 6;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.ChangeNumbersAfterSeparatorField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ChangeNumbersAfterSeparatorField.Hexadecimal = true;
+            this.ChangeNumbersAfterSeparatorField.Location = new System.Drawing.Point(171, 226);
+            this.ChangeNumbersAfterSeparatorField.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.ChangeNumbersAfterSeparatorField.Name = "ChangeNumbersAfterSeparatorField";
+            this.ChangeNumbersAfterSeparatorField.Size = new System.Drawing.Size(33, 21);
+            this.ChangeNumbersAfterSeparatorField.TabIndex = 6;
+            this.ChangeNumbersAfterSeparatorField.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
             // 
-            // domainUpDown1
+            // ChangeNumbersAfterSeparatorText
             // 
-            this.domainUpDown1.Location = new System.Drawing.Point(40, 25);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.domainUpDown1.TabIndex = 7;
-            this.domainUpDown1.Text = "domainUpDown1";
+            this.ChangeNumbersAfterSeparatorText.BackColor = System.Drawing.SystemColors.Window;
+            this.ChangeNumbersAfterSeparatorText.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ChangeNumbersAfterSeparatorText.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ChangeNumbersAfterSeparatorText.Location = new System.Drawing.Point(12, 227);
+            this.ChangeNumbersAfterSeparatorText.Name = "ChangeNumbersAfterSeparatorText";
+            this.ChangeNumbersAfterSeparatorText.ReadOnly = true;
+            this.ChangeNumbersAfterSeparatorText.Size = new System.Drawing.Size(153, 21);
+            this.ChangeNumbersAfterSeparatorText.TabIndex = 8;
+            this.ChangeNumbersAfterSeparatorText.Text = "С-лів п-я роздільника";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(216, 270);
-            this.Controls.Add(this.domainUpDown1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.ChangeSymbolQuantityAfterSeparatorField);
+            this.Controls.Add(this.ChangeNumbersAfterSeparatorText);
+            this.Controls.Add(this.ChangeNumbersAfterSeparatorField);
             this.Controls.Add(this.ChangeSeparatorSymbolField);
-            this.Controls.Add(this.ChangeThemeField);
+            this.Controls.Add(this.ChangeColorThemeField);
             this.Controls.Add(this.ChangeLanguageField);
             this.Controls.Add(this.AcceptButton);
             this.Controls.Add(this.ReturnButton);
+            this.MaximumSize = new System.Drawing.Size(232, 309);
+            this.MinimumSize = new System.Drawing.Size(232, 309);
             this.Name = "Settings";
-            this.Text = "Settings";
+            this.Text = "Налаштування";
             ((System.ComponentModel.ISupportInitialize)(this.ReturnButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AcceptButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeNumbersAfterSeparatorField)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -164,10 +162,9 @@
         private System.Windows.Forms.PictureBox ReturnButton;
         private System.Windows.Forms.PictureBox AcceptButton;
         private System.Windows.Forms.ComboBox ChangeLanguageField;
-        private System.Windows.Forms.ComboBox ChangeThemeField;
+        private System.Windows.Forms.ComboBox ChangeColorThemeField;
         private System.Windows.Forms.ComboBox ChangeSeparatorSymbolField;
-        private System.Windows.Forms.ComboBox ChangeSymbolQuantityAfterSeparatorField;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.NumericUpDown ChangeNumbersAfterSeparatorField;
+        private System.Windows.Forms.TextBox ChangeNumbersAfterSeparatorText;
     }
 }
