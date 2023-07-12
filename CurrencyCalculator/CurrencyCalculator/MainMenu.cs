@@ -19,7 +19,6 @@ namespace CurrencyCalculator
 {
     public partial class MainMenu : Form
     {
-        
         private static CurrencyResponse currencyResponse;
         private Settings settingsForm;
 
@@ -50,12 +49,12 @@ namespace CurrencyCalculator
         {
             if (settingsForm == null || settingsForm.IsDisposed)
             {
-                settingsForm = new Settings(); // Создаем экземпляр формы Settings только при первом нажатии кнопки или если предыдущий экземпляр закрыт
+                settingsForm = new Settings();
                 settingsForm.Show();
             }
             else
             {
-                settingsForm.BringToFront(); // Показываем уже существующий экземпляр формы Settings, если он уже открыт
+                settingsForm.BringToFront();
             }
         }
 
@@ -103,7 +102,7 @@ namespace CurrencyCalculator
 
         public void ChangeColorTheme(string colorTheme)
         {
-            if (colorTheme == "Світла")
+            if (colorTheme == "Світла" || colorTheme == "Light")
             {
                 this.BackColor = System.Drawing.Color.WhiteSmoke;
 
@@ -127,7 +126,7 @@ namespace CurrencyCalculator
 
                 CashAmountField.BorderStyle = BorderStyle.None;
             }
-            else if (colorTheme == "Темна")
+            else if (colorTheme == "Темна" || colorTheme == "Dark")
             {
                 this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
 
@@ -152,6 +151,30 @@ namespace CurrencyCalculator
                 CashAmountField.BorderStyle = BorderStyle.FixedSingle;
             }
 
+        }
+
+        public void ChangeLanguage(string language)
+        {
+            if (language == "Українська" || language == "Ukraininan")
+            {
+                CashAmountLabel.Text = "Введіть кількість грошей:";
+                OriginalCurrencyLabel.Text = "Оберіть валюту з якої хочете конвертувати:";
+                SecondCurrencyLabel.Text = "Оберіть валюту до якої хочете перейти:";
+                ResultLabel.Text = "Результат:";
+                ExchangeLabel.Text = "Курс на сьогодні:";
+                ConvertButton.Text = "Конвертувати";
+                this.Text = "Валютний калькулятор";
+            }
+            else if (language == "Англійська" || language == "English")
+            {
+                CashAmountLabel.Text = "Enter cash amount:";
+                OriginalCurrencyLabel.Text = "Choose original currency:";
+                SecondCurrencyLabel.Text = "Choose second currency";
+                ResultLabel.Text = "Result:";
+                ExchangeLabel.Text = "Today's money rate:";
+                ConvertButton.Text = "Convert";
+                this.Text = "Currency calculator";
+            }
         }
     }
 }

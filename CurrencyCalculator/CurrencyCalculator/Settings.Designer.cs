@@ -35,7 +35,7 @@
             this.ChangeColorThemeField = new System.Windows.Forms.ComboBox();
             this.ChangeSeparatorSymbolField = new System.Windows.Forms.ComboBox();
             this.ChangeNumbersAfterSeparatorField = new System.Windows.Forms.NumericUpDown();
-            this.ChangeNumbersAfterSeparatorText = new System.Windows.Forms.TextBox();
+            this.ChangeNumbersAfterSeparatorLabel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ReturnButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AcceptButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeNumbersAfterSeparatorField)).BeginInit();
@@ -121,17 +121,17 @@
             0,
             0});
             // 
-            // ChangeNumbersAfterSeparatorText
+            // ChangeNumbersAfterSeparatorLabel
             // 
-            this.ChangeNumbersAfterSeparatorText.BackColor = System.Drawing.SystemColors.Window;
-            this.ChangeNumbersAfterSeparatorText.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ChangeNumbersAfterSeparatorText.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ChangeNumbersAfterSeparatorText.Location = new System.Drawing.Point(12, 227);
-            this.ChangeNumbersAfterSeparatorText.Name = "ChangeNumbersAfterSeparatorText";
-            this.ChangeNumbersAfterSeparatorText.ReadOnly = true;
-            this.ChangeNumbersAfterSeparatorText.Size = new System.Drawing.Size(153, 21);
-            this.ChangeNumbersAfterSeparatorText.TabIndex = 8;
-            this.ChangeNumbersAfterSeparatorText.Text = "С-лів п-я роздільника";
+            this.ChangeNumbersAfterSeparatorLabel.BackColor = System.Drawing.SystemColors.Window;
+            this.ChangeNumbersAfterSeparatorLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ChangeNumbersAfterSeparatorLabel.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ChangeNumbersAfterSeparatorLabel.Location = new System.Drawing.Point(12, 227);
+            this.ChangeNumbersAfterSeparatorLabel.Name = "ChangeNumbersAfterSeparatorLabel";
+            this.ChangeNumbersAfterSeparatorLabel.ReadOnly = true;
+            this.ChangeNumbersAfterSeparatorLabel.Size = new System.Drawing.Size(153, 21);
+            this.ChangeNumbersAfterSeparatorLabel.TabIndex = 8;
+            this.ChangeNumbersAfterSeparatorLabel.Text = "С-лів п-я роздільника";
             // 
             // Settings
             // 
@@ -139,7 +139,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(216, 270);
-            this.Controls.Add(this.ChangeNumbersAfterSeparatorText);
+            this.Controls.Add(this.ChangeNumbersAfterSeparatorLabel);
             this.Controls.Add(this.ChangeNumbersAfterSeparatorField);
             this.Controls.Add(this.ChangeSeparatorSymbolField);
             this.Controls.Add(this.ChangeColorThemeField);
@@ -165,6 +165,6 @@
         private System.Windows.Forms.ComboBox ChangeColorThemeField;
         private System.Windows.Forms.ComboBox ChangeSeparatorSymbolField;
         private System.Windows.Forms.NumericUpDown ChangeNumbersAfterSeparatorField;
-        private System.Windows.Forms.TextBox ChangeNumbersAfterSeparatorText;
+        private System.Windows.Forms.TextBox ChangeNumbersAfterSeparatorLabel;
     }
 }

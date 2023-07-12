@@ -126,9 +126,9 @@
             this.OriginalCurrencyLabel.ForeColor = System.Drawing.Color.Black;
             this.OriginalCurrencyLabel.Location = new System.Drawing.Point(322, 49);
             this.OriginalCurrencyLabel.Name = "OriginalCurrencyLabel";
-            this.OriginalCurrencyLabel.Size = new System.Drawing.Size(416, 17);
+            this.OriginalCurrencyLabel.Size = new System.Drawing.Size(344, 17);
             this.OriginalCurrencyLabel.TabIndex = 11;
-            this.OriginalCurrencyLabel.Text = "Оберіть необхідну валюту з якої хочете конвертувати";
+            this.OriginalCurrencyLabel.Text = "Оберіть валюту з якої хочете конвертувати:";
             // 
             // SecondCurrencyLabel
             // 
@@ -137,9 +137,9 @@
             this.SecondCurrencyLabel.ForeColor = System.Drawing.Color.Black;
             this.SecondCurrencyLabel.Location = new System.Drawing.Point(322, 153);
             this.SecondCurrencyLabel.Name = "SecondCurrencyLabel";
-            this.SecondCurrencyLabel.Size = new System.Drawing.Size(304, 17);
+            this.SecondCurrencyLabel.Size = new System.Drawing.Size(312, 17);
             this.SecondCurrencyLabel.TabIndex = 12;
-            this.SecondCurrencyLabel.Text = "Оберіть валюту до якої хочете перейти";
+            this.SecondCurrencyLabel.Text = "Оберіть валюту до якої хочете перейти:";
             // 
             // OriginalCurrencyField
             // 
