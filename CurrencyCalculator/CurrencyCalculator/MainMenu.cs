@@ -65,7 +65,8 @@ namespace CurrencyCalculator
 
         private double CurrencyConvert(double firstValue, double secondValue, double cashAmount)
         {
-            return cashAmount * (secondValue / firstValue);
+            if (cashAmount > 0) return cashAmount * (secondValue / firstValue);
+            else return 0;
         }
 
         private double GetCurrencyValue(string originalCurrency)
