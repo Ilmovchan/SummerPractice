@@ -19,8 +19,8 @@ namespace CurrencyCalculator
 {
     public partial class MainMenu : Form
     {
-        
         private static CurrencyResponse currencyResponse;
+        private Settings settingsForm;
 
         public MainMenu()
         {
@@ -28,29 +28,48 @@ namespace CurrencyCalculator
 
             if (currencyResponse == null)
             {
-                currencyResponse = getResponse();
+                currencyResponse = GetResponse();
             }
+
+            ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
+            ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
+            ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default["DefaultOriginalCurrency"]));
+
         }
 
         private void ConvertButton_Click(object sender, EventArgs e)
         {
-            double firstCurrencyValue = getCurrencyValue(OriginalCurrencyField.Text);
-            double secondCurrencyValue = getCurrencyValue(SecondCurrencyField.Text);
+            double firstCurrencyValue = GetCurrencyValue(OriginalCurrencyField.Text);
+            double secondCurrencyValue = GetCurrencyValue(SecondCurrencyField.Text);
 
             Double.TryParse(CashAmountField.Text, out double cashAmount);
 
-            double resultValue = currencyConvert(firstCurrencyValue, secondCurrencyValue, cashAmount);
+            double resultValue = CurrencyConvert(firstCurrencyValue, secondCurrencyValue, cashAmount);
 
-            ResultField.Text = resultValue.ToString("0.00");
-            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(Math.Round(firstCurrencyValue/secondCurrencyValue , 2));
+            ResultField.Text = Convert.ToString(Math.Round(resultValue, (int)Properties.Settings.Default["NumbersAfterSeparator"]));
+            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(Math.Round(firstCurrencyValue/secondCurrencyValue , (int)Properties.Settings.Default["NumbersAfterSeparator"]));
         }
 
-        private double currencyConvert(double firstValue, double secondValue, double cashAmount)
+        private void SettingsButton_Click(object sender, EventArgs e)
         {
-            return cashAmount * (secondValue / firstValue);
+            if (settingsForm == null || settingsForm.IsDisposed)
+            {
+                settingsForm = new Settings();
+                settingsForm.Show();
+            }
+            else
+            {
+                settingsForm.BringToFront();
+            }
         }
 
-        private double getCurrencyValue(string originalCurrency)
+        private double CurrencyConvert(double firstValue, double secondValue, double cashAmount)
+        {
+            if (cashAmount > 0) return cashAmount * (secondValue / firstValue);
+            else return 0;
+        }
+
+        private double GetCurrencyValue(string originalCurrency)
         {
             CurrencyInfo currencyInfo = currencyResponse.rates;
             PropertyInfo[] properties = typeof(CurrencyInfo).GetProperties();
@@ -70,7 +89,7 @@ namespace CurrencyCalculator
             return 0;
         }
 
-        private CurrencyResponse getResponse()
+        private CurrencyResponse GetResponse()
         {
             string url = "https://openexchangerates.org/api/latest.json?app_id=5b79ee6f285c4818b7fb7acd54c174b6";
             CurrencyResponse currencyResponse;
@@ -85,6 +104,110 @@ namespace CurrencyCalculator
             }
 
             return currencyResponse;
+        }
+
+        public void ChangeLanguage(string language)
+        {
+            if (language == "UA")
+            {
+                CashAmountLabel.Text = "Введіть кількість грошей:";
+                OriginalCurrencyLabel.Text = "Оберіть валюту з якої хочете конвертувати:";
+                SecondCurrencyLabel.Text = "Оберіть валюту до якої хочете перейти:";
+                ResultLabel.Text = "Результат:";
+                ExchangeLabel.Text = "Курс на сьогодні:";
+                ConvertButton.Text = "Конвертувати";
+                this.Text = "Валютний калькулятор";
+            }
+            else if (language == "ENG")
+            {
+                CashAmountLabel.Text = "Enter cash amount:";
+                OriginalCurrencyLabel.Text = "Choose original currency:";
+                SecondCurrencyLabel.Text = "Choose second currency";
+                ResultLabel.Text = "Result:";
+                ExchangeLabel.Text = "Today's money rate:";
+                ConvertButton.Text = "Convert";
+                this.Text = "Currency calculator";
+            }
+        }
+
+        public void ChangeColorTheme(string colorTheme)
+        {
+            if (colorTheme == "LIGHT")
+            {
+                this.BackColor = System.Drawing.Color.WhiteSmoke;
+
+                CashAmountField.BackColor = System.Drawing.SystemColors.ScrollBar;
+                OriginalCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
+                SecondCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
+
+                ResultField.BackColor = System.Drawing.SystemColors.ScrollBar;
+                ExchangeField.BackColor = System.Drawing.SystemColors.ScrollBar;
+
+                CashAmountField.ForeColor = System.Drawing.Color.Black;
+                OriginalCurrencyField.ForeColor = System.Drawing.Color.Black;
+                SecondCurrencyField.ForeColor = System.Drawing.Color.Black;
+
+                ResultField.ForeColor = System.Drawing.Color.Black;
+                ExchangeField.ForeColor = System.Drawing.Color.Black;
+
+                CashAmountLabel.ForeColor = System.Drawing.Color.Black;
+                OriginalCurrencyLabel.ForeColor = System.Drawing.Color.Black;
+                SecondCurrencyLabel.ForeColor = System.Drawing.Color.Black;
+
+                ResultLabel.ForeColor = System.Drawing.Color.Black;
+                ExchangeLabel.ForeColor = System.Drawing.Color.Black;
+
+                ConvertButton.BackColor = System.Drawing.Color.PowderBlue;
+                ConvertButton.ForeColor = System.Drawing.Color.Black;
+                ConvertButton.FlatAppearance.BorderColor = System.Drawing.Color.PowderBlue;
+
+                CashAmountField.BorderStyle = BorderStyle.None;
+
+                SettingsButton.Image = Image.FromFile("../../../icons/settings_new_icon_grey.png");
+            }
+            else if (colorTheme == "DARK")
+            {
+                this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+
+                CashAmountField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+                OriginalCurrencyField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+                SecondCurrencyField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+
+                ResultField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+                ExchangeField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+
+                CashAmountField.ForeColor = System.Drawing.Color.White;
+                OriginalCurrencyField.ForeColor = System.Drawing.Color.White;
+                SecondCurrencyField.ForeColor = System.Drawing.Color.White;
+
+                ResultField.ForeColor = System.Drawing.Color.White;
+                ExchangeField.ForeColor = System.Drawing.Color.White;
+
+                CashAmountLabel.ForeColor = System.Drawing.Color.White;
+                OriginalCurrencyLabel.ForeColor = System.Drawing.Color.White;
+                SecondCurrencyLabel.ForeColor = System.Drawing.Color.White;
+
+                ResultLabel.ForeColor = System.Drawing.Color.White;
+                ExchangeLabel.ForeColor = System.Drawing.Color.White;
+
+                ConvertButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(74)))), ((int)(((byte)(232)))));
+                ConvertButton.ForeColor = System.Drawing.Color.White;
+                ConvertButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(74)))), ((int)(((byte)(232)))));
+
+                CashAmountField.BorderStyle = BorderStyle.FixedSingle;
+
+                SettingsButton.Image = Image.FromFile("../../../icons/settings_new_icon_white.png");
+            }
+
+        }
+
+        public void ChangeDefaultOriginalCurrency(string defaultOriginalCurrency)
+        {
+            if (defaultOriginalCurrency == "DEFAULT")
+            {
+                OriginalCurrencyField.Text = "";
+            }
+            else OriginalCurrencyField.Text = defaultOriginalCurrency;
         }
     }
 }
