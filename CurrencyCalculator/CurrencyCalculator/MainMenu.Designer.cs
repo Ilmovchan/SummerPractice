@@ -66,6 +66,7 @@
             // 
             this.CashAmountField.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.CashAmountField.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CashAmountField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CashAmountField.Location = new System.Drawing.Point(47, 79);
             this.CashAmountField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CashAmountField.Name = "CashAmountField";
@@ -91,6 +92,7 @@
             // 
             this.SecondCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.SecondCurrencyField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SecondCurrencyField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SecondCurrencyField.FormattingEnabled = true;
             this.SecondCurrencyField.Items.AddRange(new object[] {
             "USD",
@@ -105,7 +107,7 @@
             this.SecondCurrencyField.Location = new System.Drawing.Point(325, 184);
             this.SecondCurrencyField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SecondCurrencyField.Name = "SecondCurrencyField";
-            this.SecondCurrencyField.Size = new System.Drawing.Size(412, 23);
+            this.SecondCurrencyField.Size = new System.Drawing.Size(412, 25);
             this.SecondCurrencyField.TabIndex = 5;
             // 
             // ResultLabel
@@ -145,6 +147,7 @@
             // 
             this.OriginalCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.OriginalCurrencyField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OriginalCurrencyField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OriginalCurrencyField.FormattingEnabled = true;
             this.OriginalCurrencyField.Items.AddRange(new object[] {
             "USD",
@@ -159,7 +162,7 @@
             this.OriginalCurrencyField.Location = new System.Drawing.Point(325, 79);
             this.OriginalCurrencyField.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OriginalCurrencyField.Name = "OriginalCurrencyField";
-            this.OriginalCurrencyField.Size = new System.Drawing.Size(412, 23);
+            this.OriginalCurrencyField.Size = new System.Drawing.Size(412, 25);
             this.OriginalCurrencyField.TabIndex = 15;
             // 
             // ResultField

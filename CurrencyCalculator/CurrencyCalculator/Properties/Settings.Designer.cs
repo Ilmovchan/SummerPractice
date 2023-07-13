@@ -25,7 +25,7 @@ namespace CurrencyCalculator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("English")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ENG")]
         public string Language {
             get {
                 return ((string)(this["Language"]));
@@ -37,13 +37,37 @@ namespace CurrencyCalculator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Light")]
+        [global::System.Configuration.DefaultSettingValueAttribute("LIGHT")]
         public string ColorTheme {
             get {
                 return ((string)(this["ColorTheme"]));
             }
             set {
                 this["ColorTheme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DEFAULT")]
+        public string DefaultOriginalCurrency {
+            get {
+                return ((string)(this["DefaultOriginalCurrency"]));
+            }
+            set {
+                this["DefaultOriginalCurrency"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int NumbersAfterSeparator {
+            get {
+                return ((int)(this["NumbersAfterSeparator"]));
+            }
+            set {
+                this["NumbersAfterSeparator"] = value;
             }
         }
     }

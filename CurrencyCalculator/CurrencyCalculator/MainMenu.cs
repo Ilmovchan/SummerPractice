@@ -30,6 +30,11 @@ namespace CurrencyCalculator
             {
                 currencyResponse = GetResponse();
             }
+
+            ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
+            ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
+            ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default["DefaultOriginalCurrency"]));
+
         }
 
         private void ConvertButton_Click(object sender, EventArgs e)
@@ -41,8 +46,8 @@ namespace CurrencyCalculator
 
             double resultValue = CurrencyConvert(firstCurrencyValue, secondCurrencyValue, cashAmount);
 
-            ResultField.Text = resultValue.ToString("0.00");
-            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(Math.Round(firstCurrencyValue/secondCurrencyValue , 2));
+            ResultField.Text = Convert.ToString(Math.Round(resultValue, (int)Properties.Settings.Default["NumbersAfterSeparator"]));
+            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(Math.Round(firstCurrencyValue/secondCurrencyValue , (int)Properties.Settings.Default["NumbersAfterSeparator"]));
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -100,9 +105,33 @@ namespace CurrencyCalculator
             return currencyResponse;
         }
 
+        public void ChangeLanguage(string language)
+        {
+            if (language == "UA")
+            {
+                CashAmountLabel.Text = "Введіть кількість грошей:";
+                OriginalCurrencyLabel.Text = "Оберіть валюту з якої хочете конвертувати:";
+                SecondCurrencyLabel.Text = "Оберіть валюту до якої хочете перейти:";
+                ResultLabel.Text = "Результат:";
+                ExchangeLabel.Text = "Курс на сьогодні:";
+                ConvertButton.Text = "Конвертувати";
+                this.Text = "Валютний калькулятор";
+            }
+            else if (language == "ENG")
+            {
+                CashAmountLabel.Text = "Enter cash amount:";
+                OriginalCurrencyLabel.Text = "Choose original currency:";
+                SecondCurrencyLabel.Text = "Choose second currency";
+                ResultLabel.Text = "Result:";
+                ExchangeLabel.Text = "Today's money rate:";
+                ConvertButton.Text = "Convert";
+                this.Text = "Currency calculator";
+            }
+        }
+
         public void ChangeColorTheme(string colorTheme)
         {
-            if (colorTheme == "Світла" || colorTheme == "Light")
+            if (colorTheme == "LIGHT")
             {
                 this.BackColor = System.Drawing.Color.WhiteSmoke;
 
@@ -112,6 +141,13 @@ namespace CurrencyCalculator
 
                 ResultField.BackColor = System.Drawing.SystemColors.ScrollBar;
                 ExchangeField.BackColor = System.Drawing.SystemColors.ScrollBar;
+
+                CashAmountField.ForeColor = System.Drawing.Color.Black;
+                OriginalCurrencyField.ForeColor = System.Drawing.Color.Black;
+                SecondCurrencyField.ForeColor = System.Drawing.Color.Black;
+
+                ResultField.ForeColor = System.Drawing.Color.Black;
+                ExchangeField.ForeColor = System.Drawing.Color.Black;
 
                 CashAmountLabel.ForeColor = System.Drawing.Color.Black;
                 OriginalCurrencyLabel.ForeColor = System.Drawing.Color.Black;
@@ -125,8 +161,10 @@ namespace CurrencyCalculator
                 ConvertButton.FlatAppearance.BorderColor = System.Drawing.Color.PowderBlue;
 
                 CashAmountField.BorderStyle = BorderStyle.None;
+
+                SettingsButton.Image = Image.FromFile("../../../icons/settings_new_icon_grey.png");
             }
-            else if (colorTheme == "Темна" || colorTheme == "Dark")
+            else if (colorTheme == "DARK")
             {
                 this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
 
@@ -136,6 +174,13 @@ namespace CurrencyCalculator
 
                 ResultField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
                 ExchangeField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+
+                CashAmountField.ForeColor = System.Drawing.Color.White;
+                OriginalCurrencyField.ForeColor = System.Drawing.Color.White;
+                SecondCurrencyField.ForeColor = System.Drawing.Color.White;
+
+                ResultField.ForeColor = System.Drawing.Color.White;
+                ExchangeField.ForeColor = System.Drawing.Color.White;
 
                 CashAmountLabel.ForeColor = System.Drawing.Color.White;
                 OriginalCurrencyLabel.ForeColor = System.Drawing.Color.White;
@@ -149,32 +194,19 @@ namespace CurrencyCalculator
                 ConvertButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(74)))), ((int)(((byte)(232)))));
 
                 CashAmountField.BorderStyle = BorderStyle.FixedSingle;
+
+                SettingsButton.Image = Image.FromFile("../../../icons/settings_new_icon_white.png");
             }
 
         }
 
-        public void ChangeLanguage(string language)
+        public void ChangeDefaultOriginalCurrency(string defaultOriginalCurrency)
         {
-            if (language == "Українська" || language == "Ukraininan")
+            if (defaultOriginalCurrency == "DEFAULT")
             {
-                CashAmountLabel.Text = "Введіть кількість грошей:";
-                OriginalCurrencyLabel.Text = "Оберіть валюту з якої хочете конвертувати:";
-                SecondCurrencyLabel.Text = "Оберіть валюту до якої хочете перейти:";
-                ResultLabel.Text = "Результат:";
-                ExchangeLabel.Text = "Курс на сьогодні:";
-                ConvertButton.Text = "Конвертувати";
-                this.Text = "Валютний калькулятор";
+                OriginalCurrencyField.Text = "";
             }
-            else if (language == "Англійська" || language == "English")
-            {
-                CashAmountLabel.Text = "Enter cash amount:";
-                OriginalCurrencyLabel.Text = "Choose original currency:";
-                SecondCurrencyLabel.Text = "Choose second currency";
-                ResultLabel.Text = "Result:";
-                ExchangeLabel.Text = "Today's money rate:";
-                ConvertButton.Text = "Convert";
-                this.Text = "Currency calculator";
-            }
+            else OriginalCurrencyField.Text = defaultOriginalCurrency;
         }
     }
 }
