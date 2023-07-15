@@ -25,7 +25,7 @@ namespace CurrencyCalculator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ENG")]
+        [global::System.Configuration.DefaultSettingValueAttribute("English")]
         public string Language {
             get {
                 return ((string)(this["Language"]));
@@ -49,7 +49,7 @@ namespace CurrencyCalculator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DEFAULT")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DefaultOriginalCurrency {
             get {
                 return ((string)(this["DefaultOriginalCurrency"]));

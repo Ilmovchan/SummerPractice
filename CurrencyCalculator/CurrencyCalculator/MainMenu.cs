@@ -108,7 +108,7 @@ namespace CurrencyCalculator
 
         public void ChangeLanguage(string language)
         {
-            if (language == "UA")
+            if (language == "Українська")
             {
                 CashAmountLabel.Text = "Введіть кількість грошей:";
                 OriginalCurrencyLabel.Text = "Оберіть валюту з якої хочете конвертувати:";
@@ -118,7 +118,7 @@ namespace CurrencyCalculator
                 ConvertButton.Text = "Конвертувати";
                 this.Text = "Валютний калькулятор";
             }
-            else if (language == "ENG")
+            else if (language == "English")
             {
                 CashAmountLabel.Text = "Enter cash amount:";
                 OriginalCurrencyLabel.Text = "Choose original currency:";
@@ -203,11 +203,7 @@ namespace CurrencyCalculator
 
         public void ChangeDefaultOriginalCurrency(string defaultOriginalCurrency)
         {
-            if (defaultOriginalCurrency == "DEFAULT")
-            {
-                OriginalCurrencyField.Text = "";
-            }
-            else OriginalCurrencyField.Text = defaultOriginalCurrency;
+            OriginalCurrencyField.Text = defaultOriginalCurrency;
         }
     }
 }

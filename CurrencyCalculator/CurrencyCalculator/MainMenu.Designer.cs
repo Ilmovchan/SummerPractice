@@ -41,7 +41,9 @@
             this.ExchangeLabel = new System.Windows.Forms.Label();
             this.CashAmountLabel = new System.Windows.Forms.Label();
             this.SettingsButton = new System.Windows.Forms.PictureBox();
+            this.InfoButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfoButton)).BeginInit();
             this.SuspendLayout();
             // 
             // ConvertButton
@@ -211,12 +213,23 @@
             this.SettingsButton.TabStop = false;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
+            // InfoButton
+            // 
+            this.InfoButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.InfoButton.Image = ((System.Drawing.Image)(resources.GetObject("InfoButton.Image")));
+            this.InfoButton.Location = new System.Drawing.Point(737, 22);
+            this.InfoButton.Name = "InfoButton";
+            this.InfoButton.Size = new System.Drawing.Size(24, 24);
+            this.InfoButton.TabIndex = 20;
+            this.InfoButton.TabStop = false;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(816, 460);
+            this.Controls.Add(this.InfoButton);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.CashAmountLabel);
             this.Controls.Add(this.ExchangeLabel);
@@ -238,6 +251,7 @@
             this.Name = "MainMenu";
             this.Text = "Валютний калькулятор";
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfoButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +271,7 @@
         private System.Windows.Forms.Label ExchangeLabel;
         private System.Windows.Forms.Label CashAmountLabel;
         private System.Windows.Forms.PictureBox SettingsButton;
+        private System.Windows.Forms.PictureBox InfoButton;
     }
 }
 

@@ -17,6 +17,9 @@ namespace CurrencyCalculator
     public partial class Settings : Form
     {
         private MainMenu mainMenu;
+        Dictionary<string, string[]> colorSchemeLanguage;
+
+
         public Settings()
         {
             InitializeComponent();
@@ -29,6 +32,8 @@ namespace CurrencyCalculator
             System.Configuration.SettingsProperty NumbersAfterSeparator = new System.Configuration.SettingsProperty("NumbersAfterSeparator");
 
             Properties.Settings.Default.Save();
+
+            colorSchemeLanguage = CreateColorSchemes();
 
             this.Load += Settings_Load;
         }
@@ -48,52 +53,48 @@ namespace CurrencyCalculator
         private void AcceptButton_Click(object sender, EventArgs e)
         {
             SetLanguageSetting(LanguageField.Text);
-            SetColorThemeSetting(ColorThemeField.Text);
+            SetColorThemeSetting(ColorThemeField.Text, colorSchemeLanguage);
             SetDefaultOriginalCurrencySetting(DefaultOriginalCurrencyField.Text);
             SetNumbersAfterSeparatorSetting(int.Parse(ChangeNumbersAfterSeparatorField.Text));
+
+            Properties.Settings.Default.Save();
 
             mainMenu.ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
             mainMenu.ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
             mainMenu.ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default["DefaultOriginalCurrency"]));
 
-            Properties.Settings.Default.Save();
             this.Close();
+        }
+
+        private Dictionary<string, string[]> CreateColorSchemes()
+        {
+            Dictionary<string, string[]> schemes = new Dictionary<string, string[]>();
+            schemes["LIGHT"] = new string[] { "Light", "Світла"};
+            schemes["DARK"] = new string[] { "Dark", "Темна"};
+            return schemes;
         }
 
         private void ChangeLanguage(string language)
         {
-            if (language == "UA")
+            if (language == "Українська")
             {
                 LanguageField.Text = "Мова";
                 ColorThemeField.Text = "Кольорова схема";
-                DefaultOriginalCurrencyField.Text = "Валюта за замовчуванням";
                 NumbersAfterSeparatorLabel.Text = "С-лів п-я роздільника";
-
-                LanguageField.Items[0] = "Українська";
-                LanguageField.Items[1] = "Англійська";
 
                 ColorThemeField.Items[0] = "Світла";
                 ColorThemeField.Items[1] = "Темна";
 
-                DefaultOriginalCurrencyField.Items[0] = "Валюта за замовчуванням";
-
                 this.Text = "Налаштування";
             }
-            else if (language == "ENG")
+            else if (language == "English")
             {
                 LanguageField.Text = "Language";
                 ColorThemeField.Text = "Color theme";
-                DefaultOriginalCurrencyField.Text = "Default currency";
                 NumbersAfterSeparatorLabel.Text = "Sym. after separator";
-
-                LanguageField.Items[0] = "Ukrainian";
-                LanguageField.Items[1] = "English";
 
                 ColorThemeField.Items[0] = "Light";
                 ColorThemeField.Items[1] = "Dark";
-
-                DefaultOriginalCurrencyField.Items[0] = "Default currency";
-
 
                 this.Text = "Settings";
             }
@@ -147,38 +148,30 @@ namespace CurrencyCalculator
 
         private void SetLanguageSetting(string language)
         {
-            if (language == "Ukrainian" || language == "Українська")
-            {
-                Properties.Settings.Default["Language"] = "UA";
-            }
-            else if (language == "English" || language == "Англійська")
-            {
-                Properties.Settings.Default["Language"] = "ENG";
-            }
-            else return;
+            Properties.Settings.Default["Language"] = language;
         }
 
-        private void SetColorThemeSetting(string colorTheme)
+        private void SetColorThemeSetting(string searchValue, Dictionary<string, string[]> colorSchemeLanguage)
         {
-            if (colorTheme == "Light" || colorTheme == "Світла")
+            foreach (KeyValuePair<string, string[]> scheme in colorSchemeLanguage)
             {
-                Properties.Settings.Default["ColorTheme"] = "LIGHT";
+                string schemeName = scheme.Key;
+                string[] schemeNames = scheme.Value;
+
+                foreach (string name in schemeNames)
+                {
+                    if (name == searchValue)
+                    {
+                        Properties.Settings.Default["ColorTheme"] = schemeName;
+                    }
+                }
             }
-            else if (colorTheme == "Dark" || colorTheme == "Темна")
-            {
-                Properties.Settings.Default["ColorTheme"] = "DARK";
-            }
-            else return;
         }
 
         private void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
         {
-            if (defaultOriginalCurrency == "Default currency" || defaultOriginalCurrency == "Валюта за замовчуванням")
-            {
-                Properties.Settings.Default["DefaultOriginalCurrency"] = "DEFAULT";
-            }
+            if (defaultOriginalCurrency == "") return;
             else Properties.Settings.Default["DefaultOriginalCurrency"] = defaultOriginalCurrency;
-
         }
 
         private void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)
