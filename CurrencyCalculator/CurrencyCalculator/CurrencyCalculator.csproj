@@ -51,6 +51,10 @@
   <ItemGroup>
     <Compile Include="CurrencyInfo.cs" />
     <Compile Include="CurrencyResponse.cs" />
+    <Compile Include="Language\MainMenu\English.cs" />
+    <Compile Include="Language\MainMenu\Ukrainian.cs" />
+    <Compile Include="Language\Settings\English.cs" />
+    <Compile Include="Language\Settings\Ukrainian.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>

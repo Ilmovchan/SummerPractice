@@ -110,23 +110,23 @@ namespace CurrencyCalculator
         {
             if (language == "Українська")
             {
-                CashAmountLabel.Text = "Введіть кількість грошей:";
-                OriginalCurrencyLabel.Text = "Оберіть валюту з якої хочете конвертувати:";
-                SecondCurrencyLabel.Text = "Оберіть валюту до якої хочете перейти:";
-                ResultLabel.Text = "Результат:";
-                ExchangeLabel.Text = "Курс на сьогодні:";
-                ConvertButton.Text = "Конвертувати";
-                this.Text = "Валютний калькулятор";
+                this.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Title;
+                CashAmountLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.CashAmount;
+                OriginalCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.OriginalCurrency;
+                SecondCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.SecondCurrency;
+                ResultLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Result;
+                ExchangeLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Exchange;
+                ConvertButton.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Convert;
             }
             else if (language == "English")
             {
-                CashAmountLabel.Text = "Enter cash amount:";
-                OriginalCurrencyLabel.Text = "Choose original currency:";
-                SecondCurrencyLabel.Text = "Choose second currency";
-                ResultLabel.Text = "Result:";
-                ExchangeLabel.Text = "Today's money rate:";
-                ConvertButton.Text = "Convert";
-                this.Text = "Currency calculator";
+                this.Text = CurrencyCalculator.Language.MainMenu.English.Title;
+                CashAmountLabel.Text = CurrencyCalculator.Language.MainMenu.English.CashAmount;
+                OriginalCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.English.OriginalCurrency;
+                SecondCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.English.SecondCurrency;
+                ResultLabel.Text = CurrencyCalculator.Language.MainMenu.English.Result;
+                ExchangeLabel.Text = CurrencyCalculator.Language.MainMenu.English.Exchange;
+                ConvertButton.Text = CurrencyCalculator.Language.MainMenu.English.Convert; 
             }
         }
 

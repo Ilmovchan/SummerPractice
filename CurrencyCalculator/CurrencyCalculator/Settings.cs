@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Windows.Forms.VisualStyles;
 using System.Globalization;
+using CurrencyCalculator.Language.MainMenu;
 
 namespace CurrencyCalculator
 {
@@ -18,6 +19,7 @@ namespace CurrencyCalculator
     {
         private MainMenu mainMenu;
         Dictionary<string, string[]> colorSchemeLanguage;
+        string[] languageList = {"English", "Українська"};
 
 
         public Settings()
@@ -78,14 +80,13 @@ namespace CurrencyCalculator
         {
             if (language == "Українська")
             {
-                LanguageField.Text = "Мова";
-                ColorThemeField.Text = "Кольорова схема";
-                NumbersAfterSeparatorLabel.Text = "С-лів п-я роздільника";
+                this.Text = CurrencyCalculator.Language.Settings.Ukrainian.Title;
+                LanguageField.Text = CurrencyCalculator.Language.Settings.Ukrainian.Language;
+                ColorThemeField.Text = CurrencyCalculator.Language.Settings.Ukrainian.ColorTheme;
+                NumbersAfterSeparatorLabel.Text = CurrencyCalculator.Language.Settings.Ukrainian.NumbersAfterSeparator;
 
-                ColorThemeField.Items[0] = "Світла";
-                ColorThemeField.Items[1] = "Темна";
-
-                this.Text = "Налаштування";
+                ColorThemeField.Items[0] = CurrencyCalculator.Language.Settings.Ukrainian.ColorThemeItem1;
+                ColorThemeField.Items[1] = CurrencyCalculator.Language.Settings.Ukrainian.ColorThemeItem2;
             }
             else if (language == "English")
             {
@@ -146,12 +147,15 @@ namespace CurrencyCalculator
             }
         }
 
-        private void SetLanguageSetting(string language)
+        private static void SetLanguageSetting(string language)
         {
-            Properties.Settings.Default["Language"] = language;
+            foreach (string element in languageList)
+            {
+                if (element == language) Properties.Settings.Default["Language"] = language;
+            }
         }
 
-        private void SetColorThemeSetting(string searchValue, Dictionary<string, string[]> colorSchemeLanguage)
+        private static void SetColorThemeSetting(string searchValue, Dictionary<string, string[]> colorSchemeLanguage)
         {
             foreach (KeyValuePair<string, string[]> scheme in colorSchemeLanguage)
             {
@@ -168,13 +172,13 @@ namespace CurrencyCalculator
             }
         }
 
-        private void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
+        private static void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
         {
             if (defaultOriginalCurrency == "") return;
             else Properties.Settings.Default["DefaultOriginalCurrency"] = defaultOriginalCurrency;
         }
 
-        private void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)
+        private static void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)
         {
             Properties.Settings.Default["NumbersAfterSeparator"] = numbersAfterSeparator;
         }
