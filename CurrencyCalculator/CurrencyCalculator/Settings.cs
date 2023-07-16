@@ -11,12 +11,18 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Windows.Forms.VisualStyles;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using CurrencyCalculator.Config.UI.Settings;
 
 namespace CurrencyCalculator
 {
     public partial class Settings : Form
     {
         private MainMenu mainMenu;
+        Dictionary<string, string[]> colorSchemeLanguage;
+
+
+
         public Settings()
         {
             InitializeComponent();
@@ -30,14 +36,16 @@ namespace CurrencyCalculator
 
             Properties.Settings.Default.Save();
 
+            colorSchemeLanguage = CreateColorSchemes();
+
             this.Load += Settings_Load;
         }
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
-            ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
-            ChangeNumbersAfterSeparatorField.Text = Convert.ToString(Properties.Settings.Default["NumbersAfterSeparator"]);
+            ChangeLanguage(Convert.ToString(Properties.Settings.Default.Language));
+            ChangeColorTheme(Convert.ToString(Properties.Settings.Default.ColorTheme));
+            NumbersAfterSeparatorField.Text = Convert.ToString(Properties.Settings.Default.NumbersAfterSeparator);
         }
 
         private void ReturnButton_Click(object sender, EventArgs e)
@@ -48,142 +56,126 @@ namespace CurrencyCalculator
         private void AcceptButton_Click(object sender, EventArgs e)
         {
             SetLanguageSetting(LanguageField.Text);
-            SetColorThemeSetting(ColorThemeField.Text);
+            SetColorThemeSetting(ColorThemeField.Text, colorSchemeLanguage);
             SetDefaultOriginalCurrencySetting(DefaultOriginalCurrencyField.Text);
-            SetNumbersAfterSeparatorSetting(int.Parse(ChangeNumbersAfterSeparatorField.Text));
-
-            mainMenu.ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
-            mainMenu.ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
-            mainMenu.ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default["DefaultOriginalCurrency"]));
+            SetNumbersAfterSeparatorSetting(int.Parse(NumbersAfterSeparatorField.Text));
 
             Properties.Settings.Default.Save();
+
+            mainMenu.ChangeLanguage(Convert.ToString(Properties.Settings.Default.Language));
+            mainMenu.ChangeColorTheme(Convert.ToString(Properties.Settings.Default.ColorTheme));
+            mainMenu.ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default.OriginalCurrency));
+
             this.Close();
         }
 
         private void ChangeLanguage(string language)
         {
-            if (language == "UA")
-            {
-                LanguageField.Text = "Мова";
-                ColorThemeField.Text = "Кольорова схема";
-                DefaultOriginalCurrencyField.Text = "Валюта за замовчуванням";
-                NumbersAfterSeparatorLabel.Text = "С-лів п-я роздільника";
+            Language languageData = new Language();
 
-                LanguageField.Items[0] = "Українська";
-                LanguageField.Items[1] = "Англійська";
+            string selectedLanguage = language;
+            LanguageText languageText = typeof(Language).GetProperty(selectedLanguage)?.GetValue(languageData) as LanguageText;
 
-                ColorThemeField.Items[0] = "Світла";
-                ColorThemeField.Items[1] = "Темна";
+            this.Text = languageText?.Title;
+            LanguageField.Text = languageText?.Language;
+            ColorThemeField.Text = languageText?.ColorTheme;
+            NumbersAfterSeparatorLabel.Text = languageText?.NumbersAfterSeparator;
+            DefaultOriginalCurrencyField.Text = languageText?.DefaultOriginalCurrency;
 
-                DefaultOriginalCurrencyField.Items[0] = "Валюта за замовчуванням";
-
-                this.Text = "Налаштування";
-            }
-            else if (language == "ENG")
-            {
-                LanguageField.Text = "Language";
-                ColorThemeField.Text = "Color theme";
-                DefaultOriginalCurrencyField.Text = "Default currency";
-                NumbersAfterSeparatorLabel.Text = "Sym. after separator";
-
-                LanguageField.Items[0] = "Ukrainian";
-                LanguageField.Items[1] = "English";
-
-                ColorThemeField.Items[0] = "Light";
-                ColorThemeField.Items[1] = "Dark";
-
-                DefaultOriginalCurrencyField.Items[0] = "Default currency";
-
-
-                this.Text = "Settings";
-            }
+            ColorThemeField.Items[0] = languageText?.ColorThemeItem0;
+            ColorThemeField.Items[1] = languageText?.ColorThemeItem1;
         }
 
         private void ChangeColorTheme(string colorTheme)
         {
-            if (colorTheme == "LIGHT")
+
+            ColorTheme colorThemeData = new ColorTheme();
+            string selectedColorTheme = colorTheme;
+            ColorThemeElements selectedColorThemeElements = typeof(ColorTheme).GetProperty(selectedColorTheme)?.GetValue(colorThemeData) as ColorThemeElements;
+
+            if (selectedColorTheme != null)
             {
-                this.BackColor = System.Drawing.Color.WhiteSmoke;
+                this.BackColor = (Color)selectedColorThemeElements?.Background;
 
-                LanguageField.BackColor = System.Drawing.SystemColors.Window;
-                ColorThemeField.BackColor = System.Drawing.SystemColors.Window;
-                DefaultOriginalCurrencyField.BackColor = System.Drawing.SystemColors.Window;
+                LanguageField.BackColor = (Color)selectedColorThemeElements?.LanguageBg;
+                ColorThemeField.BackColor = (Color)selectedColorThemeElements?.ColorThemeBg;
+                DefaultOriginalCurrencyField.BackColor = (Color)selectedColorThemeElements?.DefaultOriginalCurrencyBg;
 
-                NumbersAfterSeparatorLabel.BackColor = System.Drawing.SystemColors.Window;
-                ChangeNumbersAfterSeparatorField.BackColor = System.Drawing.SystemColors.Window;
+                NumbersAfterSeparatorLabel.BackColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorLabelBg;
+                NumbersAfterSeparatorField.BackColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorFieldBg;
 
-                LanguageField.ForeColor = System.Drawing.Color.Black;
-                ColorThemeField.ForeColor = System.Drawing.Color.Black;
-                DefaultOriginalCurrencyField.ForeColor = System.Drawing.Color.Black;
+                LanguageField.ForeColor = (Color)selectedColorThemeElements?.LanguageText;
+                ColorThemeField.ForeColor = (Color)selectedColorThemeElements?.ColorThemeText;
+                DefaultOriginalCurrencyField.ForeColor =(Color)selectedColorThemeElements?.DefaultOriginalCurrencyText;
 
-                NumbersAfterSeparatorLabel.ForeColor = System.Drawing.Color.Black;
-                ChangeNumbersAfterSeparatorField.ForeColor = System.Drawing.Color.Black;
-
-                AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_black.png");
-                ReturnButton.Image = Image.FromFile("../../../icons/back_icon_black.png");
+                NumbersAfterSeparatorLabel.ForeColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorLabelText;
+                NumbersAfterSeparatorField.ForeColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorFieldText;
             }
-            if (colorTheme == "DARK")
-            {
-                this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+        }
 
-                LanguageField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                ColorThemeField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                DefaultOriginalCurrencyField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                NumbersAfterSeparatorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                ChangeNumbersAfterSeparatorField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                LanguageField.ForeColor = System.Drawing.Color.White;
-                ColorThemeField.ForeColor = System.Drawing.Color.White;
-                DefaultOriginalCurrencyField.ForeColor = System.Drawing.Color.White;
-
-                NumbersAfterSeparatorLabel.ForeColor = System.Drawing.Color.White;
-                ChangeNumbersAfterSeparatorField.ForeColor = System.Drawing.Color.White;
-
-                AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_white.png");
-                ReturnButton.Image = Image.FromFile("../../../icons/back_icon_white.png");
-            }
+        private Dictionary<string, string[]> CreateColorSchemes()
+        {
+            Dictionary<string, string[]> schemes = new Dictionary<string, string[]>();
+            schemes["Light"] = new string[] { "Light", "Світла" };
+            schemes["Dark"] = new string[] { "Dark", "Темна" };
+            return schemes;
         }
 
         private void SetLanguageSetting(string language)
         {
-            if (language == "Ukrainian" || language == "Українська")
+
+            var languageProperties = typeof(Language).GetProperties();
+
+            foreach (var property in languageProperties)
             {
-                Properties.Settings.Default["Language"] = "UA";
+                if (property.Name == language)
+                {
+
+                    Properties.Settings.Default.Language = language;
+
+                    Properties.Settings.Default.Save();
+
+                    break;
+                }
             }
-            else if (language == "English" || language == "Англійська")
-            {
-                Properties.Settings.Default["Language"] = "ENG";
-            }
-            else return;
         }
 
-        private void SetColorThemeSetting(string colorTheme)
+        private void SetColorThemeSetting(string searchValue, Dictionary<string, string[]> colorSchemeLanguage)
         {
-            if (colorTheme == "Light" || colorTheme == "Світла")
+            foreach (KeyValuePair<string, string[]> scheme in colorSchemeLanguage)
             {
-                Properties.Settings.Default["ColorTheme"] = "LIGHT";
+                string schemeName = scheme.Key;
+                string[] schemeNames = scheme.Value;
+
+                foreach (string name in schemeNames)
+                {
+                    if (name == searchValue)
+                    {
+                        Properties.Settings.Default.ColorTheme = schemeName;
+                    }
+                }
             }
-            else if (colorTheme == "Dark" || colorTheme == "Темна")
-            {
-                Properties.Settings.Default["ColorTheme"] = "DARK";
-            }
-            else return;
         }
 
         private void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
         {
             if (defaultOriginalCurrency == "Default currency" || defaultOriginalCurrency == "Валюта за замовчуванням")
             {
-                Properties.Settings.Default["DefaultOriginalCurrency"] = "DEFAULT";
+                return;
             }
-            else Properties.Settings.Default["DefaultOriginalCurrency"] = defaultOriginalCurrency;
-
+            else if (string.IsNullOrEmpty(defaultOriginalCurrency))
+            {
+                Properties.Settings.Default.OriginalCurrency = string.Empty; // Очистить значение свойства OriginalCurrency
+            }
+            else
+            {
+                Properties.Settings.Default.OriginalCurrency = defaultOriginalCurrency;
+            }
         }
 
         private void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)
         {
-            Properties.Settings.Default["NumbersAfterSeparator"] = numbersAfterSeparator;
+            Properties.Settings.Default.NumbersAfterSeparator = numbersAfterSeparator;
         }
     }
 }

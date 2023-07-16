@@ -204,7 +204,7 @@
             // 
             this.SettingsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingsButton.Image")));
-            this.SettingsButton.Location = new System.Drawing.Point(767, 22);
+            this.SettingsButton.Location = new System.Drawing.Point(765, 22);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(25, 24);
             this.SettingsButton.TabIndex = 19;

@@ -49,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CurrencyInfo.cs" />
-    <Compile Include="CurrencyResponse.cs" />
+    <Compile Include="Config\UI\MainMenu\ColorTheme.cs" />
+    <Compile Include="Config\UI\MainMenu\Language.cs" />
+    <Compile Include="Config\UI\Settings\ColorTheme.cs" />
+    <Compile Include="Config\UI\Settings\Language.cs" />
+    <Compile Include="Config\API\CurrencyInfo.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,5 +97,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

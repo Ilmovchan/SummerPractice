@@ -4,8 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyCalculator
+namespace CurrencyCalculator.Config.API
 {
+
+    public class CurrencyResponse
+    {
+        public CurrencyInfo rates { get; set; }
+    }
+
     public class CurrencyInfo
     {
         public string UAH { get; set; }

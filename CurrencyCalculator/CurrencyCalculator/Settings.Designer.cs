@@ -34,11 +34,11 @@
             this.LanguageField = new System.Windows.Forms.ComboBox();
             this.ColorThemeField = new System.Windows.Forms.ComboBox();
             this.DefaultOriginalCurrencyField = new System.Windows.Forms.ComboBox();
-            this.ChangeNumbersAfterSeparatorField = new System.Windows.Forms.NumericUpDown();
+            this.NumbersAfterSeparatorField = new System.Windows.Forms.NumericUpDown();
             this.NumbersAfterSeparatorLabel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ReturnButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AcceptButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChangeNumbersAfterSeparatorField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumbersAfterSeparatorField)).BeginInit();
             this.SuspendLayout();
             // 
             // ReturnButton
@@ -47,7 +47,7 @@
             this.ReturnButton.Image = ((System.Drawing.Image)(resources.GetObject("ReturnButton.Image")));
             this.ReturnButton.Location = new System.Drawing.Point(12, 12);
             this.ReturnButton.Name = "ReturnButton";
-            this.ReturnButton.Size = new System.Drawing.Size(22, 24);
+            this.ReturnButton.Size = new System.Drawing.Size(27, 24);
             this.ReturnButton.TabIndex = 0;
             this.ReturnButton.TabStop = false;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
@@ -68,8 +68,8 @@
             this.LanguageField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LanguageField.FormattingEnabled = true;
             this.LanguageField.Items.AddRange(new object[] {
-            "Українська",
-            "Англійська"});
+            "Ukrainian",
+            "English"});
             this.LanguageField.Location = new System.Drawing.Point(12, 64);
             this.LanguageField.Name = "LanguageField";
             this.LanguageField.Size = new System.Drawing.Size(192, 24);
@@ -94,7 +94,7 @@
             this.DefaultOriginalCurrencyField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DefaultOriginalCurrencyField.FormattingEnabled = true;
             this.DefaultOriginalCurrencyField.Items.AddRange(new object[] {
-            "Default currency",
+            "",
             "UAH",
             "USD",
             "EUR",
@@ -110,20 +110,20 @@
             this.DefaultOriginalCurrencyField.TabIndex = 4;
             this.DefaultOriginalCurrencyField.Text = "Валюта за замовчуванням";
             // 
-            // ChangeNumbersAfterSeparatorField
+            // NumbersAfterSeparatorField
             // 
-            this.ChangeNumbersAfterSeparatorField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ChangeNumbersAfterSeparatorField.Hexadecimal = true;
-            this.ChangeNumbersAfterSeparatorField.Location = new System.Drawing.Point(171, 226);
-            this.ChangeNumbersAfterSeparatorField.Maximum = new decimal(new int[] {
+            this.NumbersAfterSeparatorField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NumbersAfterSeparatorField.Hexadecimal = true;
+            this.NumbersAfterSeparatorField.Location = new System.Drawing.Point(171, 226);
+            this.NumbersAfterSeparatorField.Maximum = new decimal(new int[] {
             8,
             0,
             0,
             0});
-            this.ChangeNumbersAfterSeparatorField.Name = "ChangeNumbersAfterSeparatorField";
-            this.ChangeNumbersAfterSeparatorField.Size = new System.Drawing.Size(33, 21);
-            this.ChangeNumbersAfterSeparatorField.TabIndex = 6;
-            this.ChangeNumbersAfterSeparatorField.Value = new decimal(new int[] {
+            this.NumbersAfterSeparatorField.Name = "NumbersAfterSeparatorField";
+            this.NumbersAfterSeparatorField.Size = new System.Drawing.Size(33, 21);
+            this.NumbersAfterSeparatorField.TabIndex = 6;
+            this.NumbersAfterSeparatorField.Value = new decimal(new int[] {
             2,
             0,
             0,
@@ -148,7 +148,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(216, 270);
             this.Controls.Add(this.NumbersAfterSeparatorLabel);
-            this.Controls.Add(this.ChangeNumbersAfterSeparatorField);
+            this.Controls.Add(this.NumbersAfterSeparatorField);
             this.Controls.Add(this.DefaultOriginalCurrencyField);
             this.Controls.Add(this.ColorThemeField);
             this.Controls.Add(this.LanguageField);
@@ -160,7 +160,7 @@
             this.Text = "Налаштування";
             ((System.ComponentModel.ISupportInitialize)(this.ReturnButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AcceptButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChangeNumbersAfterSeparatorField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumbersAfterSeparatorField)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,7 +172,7 @@
         private System.Windows.Forms.ComboBox LanguageField;
         private System.Windows.Forms.ComboBox ColorThemeField;
         private System.Windows.Forms.ComboBox DefaultOriginalCurrencyField;
-        private System.Windows.Forms.NumericUpDown ChangeNumbersAfterSeparatorField;
+        private System.Windows.Forms.NumericUpDown NumbersAfterSeparatorField;
         private System.Windows.Forms.TextBox NumbersAfterSeparatorLabel;
     }
 }
