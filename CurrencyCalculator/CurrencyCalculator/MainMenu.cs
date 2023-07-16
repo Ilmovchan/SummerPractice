@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
+using CurrencyCalculator.Config.MainMenu.Language;
 
 namespace CurrencyCalculator
 {
@@ -108,26 +109,18 @@ namespace CurrencyCalculator
 
         public void ChangeLanguage(string language)
         {
-            if (language == "Українська")
-            {
-                this.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Title;
-                CashAmountLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.CashAmount;
-                OriginalCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.OriginalCurrency;
-                SecondCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.SecondCurrency;
-                ResultLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Result;
-                ExchangeLabel.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Exchange;
-                ConvertButton.Text = CurrencyCalculator.Language.MainMenu.Ukrainian.Convert;
-            }
-            else if (language == "English")
-            {
-                this.Text = CurrencyCalculator.Language.MainMenu.English.Title;
-                CashAmountLabel.Text = CurrencyCalculator.Language.MainMenu.English.CashAmount;
-                OriginalCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.English.OriginalCurrency;
-                SecondCurrencyLabel.Text = CurrencyCalculator.Language.MainMenu.English.SecondCurrency;
-                ResultLabel.Text = CurrencyCalculator.Language.MainMenu.English.Result;
-                ExchangeLabel.Text = CurrencyCalculator.Language.MainMenu.English.Exchange;
-                ConvertButton.Text = CurrencyCalculator.Language.MainMenu.English.Convert; 
-            }
+
+            LanguageTest languageData = new LanguageTest();
+
+            string selectedLanguage = Convert.ToString(Properties.Settings.Default["Language"]);
+            LanguageText languageText = typeof(LanguageTest).GetProperty(selectedLanguage)?.GetValue(languageData) as LanguageText;
+            this.Text = languageText?.Title;
+            CashAmountLabel.Text = languageText?.CashAmount;
+            OriginalCurrencyLabel.Text = languageText?.OriginalCurrency;
+            SecondCurrencyLabel.Text = languageText?.SecondCurrency;
+            ResultLabel.Text = languageText?.Result;
+            ExchangeLabel.Text = languageText?.Exchange;
+            ConvertButton.Text = languageText?.Convert;
         }
 
         public void ChangeColorTheme(string colorTheme)

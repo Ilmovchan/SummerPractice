@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyCalculator.Language.Settings
+namespace CurrencyCalculator.Config.Settings.Language
 {
     public class Ukrainian
     {

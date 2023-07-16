@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Windows.Forms.VisualStyles;
 using System.Globalization;
-using CurrencyCalculator.Language.MainMenu;
+using System.Runtime.CompilerServices;
 
 namespace CurrencyCalculator
 {
@@ -19,7 +19,8 @@ namespace CurrencyCalculator
     {
         private MainMenu mainMenu;
         Dictionary<string, string[]> colorSchemeLanguage;
-        string[] languageList = {"English", "Українська"};
+        string[] languageList = { "English", "Ukrainian" };
+
 
 
         public Settings()
@@ -80,24 +81,23 @@ namespace CurrencyCalculator
         {
             if (language == "Українська")
             {
-                this.Text = CurrencyCalculator.Language.Settings.Ukrainian.Title;
-                LanguageField.Text = CurrencyCalculator.Language.Settings.Ukrainian.Language;
-                ColorThemeField.Text = CurrencyCalculator.Language.Settings.Ukrainian.ColorTheme;
-                NumbersAfterSeparatorLabel.Text = CurrencyCalculator.Language.Settings.Ukrainian.NumbersAfterSeparator;
+                this.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.Title;
+                LanguageField.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.Language;
+                ColorThemeField.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.ColorTheme;
+                NumbersAfterSeparatorLabel.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.NumbersAfterSeparator;
 
-                ColorThemeField.Items[0] = CurrencyCalculator.Language.Settings.Ukrainian.ColorThemeItem1;
-                ColorThemeField.Items[1] = CurrencyCalculator.Language.Settings.Ukrainian.ColorThemeItem2;
+                ColorThemeField.Items[0] = CurrencyCalculator.Config.Settings.Language.Ukrainian.ColorThemeItem1;
+                ColorThemeField.Items[1] = CurrencyCalculator.Config.Settings.Language.Ukrainian.ColorThemeItem2;
             }
             else if (language == "English")
             {
-                LanguageField.Text = "Language";
-                ColorThemeField.Text = "Color theme";
-                NumbersAfterSeparatorLabel.Text = "Sym. after separator";
+                this.Text = CurrencyCalculator.Config.Settings.Language.English.Title;
+                LanguageField.Text = CurrencyCalculator.Config.Settings.Language.English.Language;
+                ColorThemeField.Text = CurrencyCalculator.Config.Settings.Language.English.ColorTheme;
+                NumbersAfterSeparatorLabel.Text = CurrencyCalculator.Config.Settings.Language.English.NumbersAfterSeparator;
 
-                ColorThemeField.Items[0] = "Light";
-                ColorThemeField.Items[1] = "Dark";
-
-                this.Text = "Settings";
+                ColorThemeField.Items[0] = CurrencyCalculator.Config.Settings.Language.English.ColorThemeItem1;
+                ColorThemeField.Items[1] = CurrencyCalculator.Config.Settings.Language.English.ColorThemeItem2;
             }
         }
 
@@ -147,7 +147,7 @@ namespace CurrencyCalculator
             }
         }
 
-        private static void SetLanguageSetting(string language)
+        private void SetLanguageSetting(string language)
         {
             foreach (string element in languageList)
             {
@@ -155,7 +155,7 @@ namespace CurrencyCalculator
             }
         }
 
-        private static void SetColorThemeSetting(string searchValue, Dictionary<string, string[]> colorSchemeLanguage)
+        private void SetColorThemeSetting(string searchValue, Dictionary<string, string[]> colorSchemeLanguage)
         {
             foreach (KeyValuePair<string, string[]> scheme in colorSchemeLanguage)
             {
@@ -172,13 +172,13 @@ namespace CurrencyCalculator
             }
         }
 
-        private static void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
+        private void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
         {
             if (defaultOriginalCurrency == "") return;
             else Properties.Settings.Default["DefaultOriginalCurrency"] = defaultOriginalCurrency;
         }
 
-        private static void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)
+        private void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)
         {
             Properties.Settings.Default["NumbersAfterSeparator"] = numbersAfterSeparator;
         }

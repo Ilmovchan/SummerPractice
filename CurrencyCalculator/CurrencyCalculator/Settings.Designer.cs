@@ -68,7 +68,7 @@
             this.LanguageField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LanguageField.FormattingEnabled = true;
             this.LanguageField.Items.AddRange(new object[] {
-            "Українська",
+            "Ukrainian",
             "English"});
             this.LanguageField.Location = new System.Drawing.Point(12, 64);
             this.LanguageField.Name = "LanguageField";
@@ -108,6 +108,7 @@
             this.DefaultOriginalCurrencyField.Name = "DefaultOriginalCurrencyField";
             this.DefaultOriginalCurrencyField.Size = new System.Drawing.Size(192, 24);
             this.DefaultOriginalCurrencyField.TabIndex = 4;
+            this.DefaultOriginalCurrencyField.Text = "Валюта за замовчуванням";
             // 
             // ChangeNumbersAfterSeparatorField
             // 
