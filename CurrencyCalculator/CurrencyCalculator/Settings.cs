@@ -46,7 +46,7 @@ namespace CurrencyCalculator
         {
             ChangeLanguage(Convert.ToString(Properties.Settings.Default.Language));
             ChangeColorTheme(Convert.ToString(Properties.Settings.Default.ColorTheme));
-            ChangeNumbersAfterSeparatorField.Text = Convert.ToString(Properties.Settings.Default.NumbersAfterSeparator);
+            NumbersAfterSeparatorField.Text = Convert.ToString(Properties.Settings.Default.NumbersAfterSeparator);
         }
 
         private void ReturnButton_Click(object sender, EventArgs e)
@@ -59,13 +59,13 @@ namespace CurrencyCalculator
             SetLanguageSetting(LanguageField.Text);
             SetColorThemeSetting(ColorThemeField.Text, colorSchemeLanguage);
             SetDefaultOriginalCurrencySetting(DefaultOriginalCurrencyField.Text);
-            SetNumbersAfterSeparatorSetting(int.Parse(ChangeNumbersAfterSeparatorField.Text));
+            SetNumbersAfterSeparatorSetting(int.Parse(NumbersAfterSeparatorField.Text));
 
             Properties.Settings.Default.Save();
 
-            mainMenu.ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
-            mainMenu.ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
-            mainMenu.ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default["DefaultOriginalCurrency"]));
+            mainMenu.ChangeLanguage(Convert.ToString(Properties.Settings.Default.Language));
+            mainMenu.ChangeColorTheme(Convert.ToString(Properties.Settings.Default.ColorTheme));
+            mainMenu.ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default.OriginalCurrency));
 
             this.Close();
         }
@@ -95,7 +95,34 @@ namespace CurrencyCalculator
 
         private void ChangeColorTheme(string colorTheme)
         {
-            if (colorTheme == "LIGHT")
+
+            ColorTheme colorThemeData = new ColorTheme();
+            string selectedColorTheme = colorTheme;
+            ColorThemeElements selectedColorThemeElements = typeof(ColorTheme).GetProperty(selectedColorTheme)?.GetValue(colorThemeData) as ColorThemeElements;
+
+            if (selectedColorTheme != null)
+            {
+                this.BackColor = (Color)selectedColorThemeElements?.Background;
+
+                LanguageField.BackColor = (Color)selectedColorThemeElements?.LanguageBg;
+                ColorThemeField.BackColor = (Color)selectedColorThemeElements?.ColorThemeBg;
+                DefaultOriginalCurrencyField.BackColor = (Color)selectedColorThemeElements?.DefaultOriginalCurrencyBg;
+
+                NumbersAfterSeparatorLabel.BackColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorLabelBg;
+                NumbersAfterSeparatorField.BackColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorFieldBg;
+
+                LanguageField.ForeColor = (Color)selectedColorThemeElements?.LanguageText;
+                ColorThemeField.ForeColor = (Color)selectedColorThemeElements?.ColorThemeText;
+                DefaultOriginalCurrencyField.ForeColor =(Color)selectedColorThemeElements?.DefaultOriginalCurrencyText;
+
+                NumbersAfterSeparatorLabel.ForeColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorLabelText;
+                NumbersAfterSeparatorField.ForeColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorFieldText;
+
+                AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_black.png");
+                ReturnButton.Image = Image.FromFile("../../../icons/back_icon_black.png");
+            }
+
+/*            if (colorTheme == "LIGHT")
             {
                 this.BackColor = System.Drawing.Color.WhiteSmoke;
 
@@ -104,14 +131,14 @@ namespace CurrencyCalculator
                 DefaultOriginalCurrencyField.BackColor = System.Drawing.SystemColors.Window;
 
                 NumbersAfterSeparatorLabel.BackColor = System.Drawing.SystemColors.Window;
-                ChangeNumbersAfterSeparatorField.BackColor = System.Drawing.SystemColors.Window;
+                NumbersAfterSeparatorField.BackColor = System.Drawing.SystemColors.Window;
 
                 LanguageField.ForeColor = System.Drawing.Color.Black;
                 ColorThemeField.ForeColor = System.Drawing.Color.Black;
                 DefaultOriginalCurrencyField.ForeColor = System.Drawing.Color.Black;
 
                 NumbersAfterSeparatorLabel.ForeColor = System.Drawing.Color.Black;
-                ChangeNumbersAfterSeparatorField.ForeColor = System.Drawing.Color.Black;
+                NumbersAfterSeparatorField.ForeColor = System.Drawing.Color.Black;
 
                 AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_black.png");
                 ReturnButton.Image = Image.FromFile("../../../icons/back_icon_black.png");
@@ -125,18 +152,18 @@ namespace CurrencyCalculator
                 DefaultOriginalCurrencyField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
 
                 NumbersAfterSeparatorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                ChangeNumbersAfterSeparatorField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
+                NumbersAfterSeparatorField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
 
                 LanguageField.ForeColor = System.Drawing.Color.White;
                 ColorThemeField.ForeColor = System.Drawing.Color.White;
                 DefaultOriginalCurrencyField.ForeColor = System.Drawing.Color.White;
 
                 NumbersAfterSeparatorLabel.ForeColor = System.Drawing.Color.White;
-                ChangeNumbersAfterSeparatorField.ForeColor = System.Drawing.Color.White;
+                NumbersAfterSeparatorField.ForeColor = System.Drawing.Color.White;
 
                 AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_white.png");
                 ReturnButton.Image = Image.FromFile("../../../icons/back_icon_white.png");
-            }
+            }*/
         }
 
         private void SetLanguageSetting(string language)
@@ -167,7 +194,7 @@ namespace CurrencyCalculator
         private void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
         {
             if (defaultOriginalCurrency == "") return;
-            else Properties.Settings.Default.DefaultOriginalCurrency = defaultOriginalCurrency;
+            else Properties.Settings.Default.OriginalCurrency = defaultOriginalCurrency;
         }
 
         private void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)

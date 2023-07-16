@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Config\UI\MainMenu\ColorTheme.cs" />
     <Compile Include="Config\UI\MainMenu\Language.cs" />
+    <Compile Include="Config\UI\Settings\ColorTheme.cs" />
     <Compile Include="Config\UI\Settings\Language.cs" />
     <Compile Include="Config\API\CurrencyInfo.cs" />
     <Compile Include="MainMenu.cs">

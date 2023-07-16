@@ -50,12 +50,12 @@ namespace CurrencyCalculator.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DefaultOriginalCurrency {
+        public string OriginalCurrency {
             get {
-                return ((string)(this["DefaultOriginalCurrency"]));
+                return ((string)(this["OriginalCurrency"]));
             }
             set {
-                this["DefaultOriginalCurrency"] = value;
+                this["OriginalCurrency"] = value;
             }
         }
         

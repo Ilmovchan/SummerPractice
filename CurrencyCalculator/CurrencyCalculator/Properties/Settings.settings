@@ -8,7 +8,7 @@
     <Setting Name="ColorTheme" Type="System.String" Scope="User">
       <Value Profile="(Default)">LIGHT</Value>
     </Setting>
-    <Setting Name="DefaultOriginalCurrency" Type="System.String" Scope="User">
+    <Setting Name="OriginalCurrency" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="NumbersAfterSeparator" Type="System.Int32" Scope="User">

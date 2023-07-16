@@ -35,7 +35,7 @@ namespace CurrencyCalculator
 
             ChangeLanguage(Convert.ToString(Properties.Settings.Default.Language));
             ChangeColorTheme(Convert.ToString(Properties.Settings.Default.ColorTheme));
-            ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default.DefaultOriginalCurrency));
+            ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default.OriginalCurrency));
 
         }
 
@@ -129,38 +129,38 @@ namespace CurrencyCalculator
 
             ColorTheme colorThemeData = new ColorTheme();
             string selectedColorTheme = colorTheme;
-            ColorThemeElements selectedLanguageElements = typeof(ColorTheme).GetProperty(selectedColorTheme)?.GetValue(colorThemeData) as ColorThemeElements;
+            ColorThemeElements selectedColorThemeElements = typeof(ColorTheme).GetProperty(selectedColorTheme)?.GetValue(colorThemeData) as ColorThemeElements;
 
-            if (selectedLanguageElements != null)
+            if (selectedColorTheme != null)
             {
-                this.BackColor = (Color)selectedLanguageElements?.Background;
+                this.BackColor = (Color)selectedColorThemeElements?.Background;
 
-                CashAmountField.BackColor = (Color)selectedLanguageElements?.CashAmountBg;
-                OriginalCurrencyField.BackColor = (Color)selectedLanguageElements?.OriginalCurrencyBg;
-                SecondCurrencyField.BackColor = (Color)selectedLanguageElements?.SecondCurrencyBg;
+                CashAmountField.BackColor = (Color)selectedColorThemeElements?.CashAmountBg;
+                OriginalCurrencyField.BackColor = (Color)selectedColorThemeElements?.OriginalCurrencyBg;
+                SecondCurrencyField.BackColor = (Color)selectedColorThemeElements?.SecondCurrencyBg;
 
-                ResultField.BackColor = (Color)selectedLanguageElements?.ResultBg;
-                ExchangeField.BackColor = (Color)selectedLanguageElements?.ExchangeBg;
+                ResultField.BackColor = (Color)selectedColorThemeElements?.ResultBg;
+                ExchangeField.BackColor = (Color)selectedColorThemeElements?.ExchangeBg;
 
-                CashAmountField.ForeColor = (Color)selectedLanguageElements?.CashAmountText;
-                OriginalCurrencyField.ForeColor = (Color)selectedLanguageElements?.OriginalCurrencyText;
-                SecondCurrencyField.ForeColor = (Color)selectedLanguageElements?.SecondCurrencyText;
+                CashAmountField.ForeColor = (Color)selectedColorThemeElements?.CashAmountText;
+                OriginalCurrencyField.ForeColor = (Color)selectedColorThemeElements?.OriginalCurrencyText;
+                SecondCurrencyField.ForeColor = (Color)selectedColorThemeElements?.SecondCurrencyText;
 
-                ResultField.ForeColor = (Color)selectedLanguageElements?.ResultText;
-                ExchangeField.ForeColor = (Color)selectedLanguageElements?.ExchangeText;
+                ResultField.ForeColor = (Color)selectedColorThemeElements?.ResultText;
+                ExchangeField.ForeColor = (Color)selectedColorThemeElements?.ExchangeText;
 
-                CashAmountLabel.ForeColor = (Color)selectedLanguageElements?.CashAmountText;
-                OriginalCurrencyLabel.ForeColor = (Color)selectedLanguageElements?.OriginalCurrencyText;
-                SecondCurrencyLabel.ForeColor = (Color)selectedLanguageElements?.SecondCurrencyText;
+                CashAmountLabel.ForeColor = (Color)selectedColorThemeElements?.CashAmountText;
+                OriginalCurrencyLabel.ForeColor = (Color)selectedColorThemeElements?.OriginalCurrencyText;
+                SecondCurrencyLabel.ForeColor = (Color)selectedColorThemeElements?.SecondCurrencyText;
 
-                ResultLabel.ForeColor = (Color)selectedLanguageElements?.ResultText;
-                ExchangeLabel.ForeColor = (Color)selectedLanguageElements?.ExchangeText;
+                ResultLabel.ForeColor = (Color)selectedColorThemeElements?.ResultText;
+                ExchangeLabel.ForeColor = (Color)selectedColorThemeElements?.ExchangeText;
 
-                ConvertButton.BackColor = (Color)selectedLanguageElements?.ConvertBg;
-                ConvertButton.ForeColor = (Color)selectedLanguageElements?.ConvertText;
-                ConvertButton.FlatAppearance.BorderColor = (Color)selectedLanguageElements?.ConvertBorder;
+                ConvertButton.BackColor = (Color)selectedColorThemeElements?.ConvertBg;
+                ConvertButton.ForeColor = (Color)selectedColorThemeElements?.ConvertText;
+                ConvertButton.FlatAppearance.BorderColor = (Color)selectedColorThemeElements?.ConvertBorder;
 
-                CashAmountField.BorderStyle = (BorderStyle)selectedLanguageElements?.CashAmountBorderStyle;
+                CashAmountField.BorderStyle = (BorderStyle)selectedColorThemeElements?.CashAmountBorderStyle;
             }
 
         }
