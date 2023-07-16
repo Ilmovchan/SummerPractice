@@ -44,9 +44,9 @@ namespace CurrencyCalculator
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
-            ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
-            ChangeNumbersAfterSeparatorField.Text = Convert.ToString(Properties.Settings.Default["NumbersAfterSeparator"]);
+            ChangeLanguage(Convert.ToString(Properties.Settings.Default.Language));
+            ChangeColorTheme(Convert.ToString(Properties.Settings.Default.ColorTheme));
+            ChangeNumbersAfterSeparatorField.Text = Convert.ToString(Properties.Settings.Default.NumbersAfterSeparator);
         }
 
         private void ReturnButton_Click(object sender, EventArgs e)
@@ -73,8 +73,8 @@ namespace CurrencyCalculator
         private Dictionary<string, string[]> CreateColorSchemes()
         {
             Dictionary<string, string[]> schemes = new Dictionary<string, string[]>();
-            schemes["LIGHT"] = new string[] { "Light", "Світла"};
-            schemes["DARK"] = new string[] { "Dark", "Темна"};
+            schemes["Light"] = new string[] { "Light", "Світла"};
+            schemes["Dark"] = new string[] { "Dark", "Темна"};
             return schemes;
         }
 
@@ -143,7 +143,7 @@ namespace CurrencyCalculator
         {
             foreach (string element in languageList)
             {
-                if (element == language) Properties.Settings.Default["Language"] = language;
+                if (element == language) Properties.Settings.Default.Language = language;
             }
         }
 
@@ -158,7 +158,7 @@ namespace CurrencyCalculator
                 {
                     if (name == searchValue)
                     {
-                        Properties.Settings.Default["ColorTheme"] = schemeName;
+                        Properties.Settings.Default.ColorTheme = schemeName;
                     }
                 }
             }
@@ -167,12 +167,12 @@ namespace CurrencyCalculator
         private void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
         {
             if (defaultOriginalCurrency == "") return;
-            else Properties.Settings.Default["DefaultOriginalCurrency"] = defaultOriginalCurrency;
+            else Properties.Settings.Default.DefaultOriginalCurrency = defaultOriginalCurrency;
         }
 
         private void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)
         {
-            Properties.Settings.Default["NumbersAfterSeparator"] = numbersAfterSeparator;
+            Properties.Settings.Default.NumbersAfterSeparator = numbersAfterSeparator;
         }
     }
 }

@@ -8,12 +8,12 @@ namespace CurrencyCalculator.Config.UI.MainMenu
 {
     public class Language
     {
-        public LanguageText English { get; set; }
-        public LanguageText Ukrainian { get; set; }
+        public LanguageElements English { get; set; }
+        public LanguageElements Ukrainian { get; set; }
 
         public Language()
         {
-            English = new LanguageText
+            English = new LanguageElements
             {
                 Title = "Currency calculator",
                 CashAmount = "Enter cash amount:",
@@ -25,7 +25,7 @@ namespace CurrencyCalculator.Config.UI.MainMenu
             };
 
 
-            Ukrainian = new LanguageText
+            Ukrainian = new LanguageElements
             {
                 Title = "Валютний калькулятор",
                 CashAmount = "Введіть кількість грошей:",
@@ -37,7 +37,7 @@ namespace CurrencyCalculator.Config.UI.MainMenu
             };
         }
     }
-    public class LanguageText
+    public class LanguageElements
     {
         public string Title { get; set; }
         public string CashAmount { get; set; }

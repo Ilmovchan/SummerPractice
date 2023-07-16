@@ -33,9 +33,9 @@ namespace CurrencyCalculator
                 currencyResponse = GetResponse();
             }
 
-            ChangeLanguage(Convert.ToString(Properties.Settings.Default["Language"]));
-            ChangeColorTheme(Convert.ToString(Properties.Settings.Default["ColorTheme"]));
-            ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default["DefaultOriginalCurrency"]));
+            ChangeLanguage(Convert.ToString(Properties.Settings.Default.Language));
+            ChangeColorTheme(Convert.ToString(Properties.Settings.Default.ColorTheme));
+            ChangeDefaultOriginalCurrency(Convert.ToString(Properties.Settings.Default.DefaultOriginalCurrency));
 
         }
 
@@ -48,8 +48,8 @@ namespace CurrencyCalculator
 
             double resultValue = CurrencyConvert(firstCurrencyValue, secondCurrencyValue, cashAmount);
 
-            ResultField.Text = Convert.ToString(Math.Round(resultValue, (int)Properties.Settings.Default["NumbersAfterSeparator"]));
-            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(Math.Round(firstCurrencyValue/secondCurrencyValue , (int)Properties.Settings.Default["NumbersAfterSeparator"]));
+            ResultField.Text = Convert.ToString(Math.Round(resultValue, (int)Properties.Settings.Default.NumbersAfterSeparator));
+            ExchangeField.Text = OriginalCurrencyField.Text + "/" + SecondCurrencyField.Text + ": " + Convert.ToString(Math.Round(firstCurrencyValue/secondCurrencyValue , (int)Properties.Settings.Default.NumbersAfterSeparator));
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace CurrencyCalculator
             Language languageData = new Language();
 
             string selectedLanguage = language;
-            LanguageText languageText = typeof(Language).GetProperty(selectedLanguage)?.GetValue(languageData) as LanguageText;
+            LanguageElements languageText = typeof(Language).GetProperty(selectedLanguage)?.GetValue(languageData) as LanguageElements;
 
             this.Text = languageText?.Title;
             CashAmountLabel.Text = languageText?.CashAmount;
@@ -126,71 +126,41 @@ namespace CurrencyCalculator
 
         public void ChangeColorTheme(string colorTheme)
         {
-            if (colorTheme == "LIGHT")
+
+            ColorTheme colorThemeData = new ColorTheme();
+            string selectedColorTheme = colorTheme;
+            ColorThemeElements selectedLanguageElements = typeof(ColorTheme).GetProperty(selectedColorTheme)?.GetValue(colorThemeData) as ColorThemeElements;
+
+            if (selectedLanguageElements != null)
             {
-                this.BackColor = System.Drawing.Color.WhiteSmoke;
+                this.BackColor = (Color)selectedLanguageElements?.Background;
 
-                CashAmountField.BackColor = System.Drawing.SystemColors.ScrollBar;
-                OriginalCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
-                SecondCurrencyField.BackColor = System.Drawing.SystemColors.ScrollBar;
+                CashAmountField.BackColor = (Color)selectedLanguageElements?.CashAmountBg;
+                OriginalCurrencyField.BackColor = (Color)selectedLanguageElements?.OriginalCurrencyBg;
+                SecondCurrencyField.BackColor = (Color)selectedLanguageElements?.SecondCurrencyBg;
 
-                ResultField.BackColor = System.Drawing.SystemColors.ScrollBar;
-                ExchangeField.BackColor = System.Drawing.SystemColors.ScrollBar;
+                ResultField.BackColor = (Color)selectedLanguageElements?.ResultBg;
+                ExchangeField.BackColor = (Color)selectedLanguageElements?.ExchangeBg;
 
-                CashAmountField.ForeColor = System.Drawing.Color.Black;
-                OriginalCurrencyField.ForeColor = System.Drawing.Color.Black;
-                SecondCurrencyField.ForeColor = System.Drawing.Color.Black;
+                CashAmountField.ForeColor = (Color)selectedLanguageElements?.CashAmountText;
+                OriginalCurrencyField.ForeColor = (Color)selectedLanguageElements?.OriginalCurrencyText;
+                SecondCurrencyField.ForeColor = (Color)selectedLanguageElements?.SecondCurrencyText;
 
-                ResultField.ForeColor = System.Drawing.Color.Black;
-                ExchangeField.ForeColor = System.Drawing.Color.Black;
+                ResultField.ForeColor = (Color)selectedLanguageElements?.ResultText;
+                ExchangeField.ForeColor = (Color)selectedLanguageElements?.ExchangeText;
 
-                CashAmountLabel.ForeColor = System.Drawing.Color.Black;
-                OriginalCurrencyLabel.ForeColor = System.Drawing.Color.Black;
-                SecondCurrencyLabel.ForeColor = System.Drawing.Color.Black;
+                CashAmountLabel.ForeColor = (Color)selectedLanguageElements?.CashAmountText;
+                OriginalCurrencyLabel.ForeColor = (Color)selectedLanguageElements?.OriginalCurrencyText;
+                SecondCurrencyLabel.ForeColor = (Color)selectedLanguageElements?.SecondCurrencyText;
 
-                ResultLabel.ForeColor = System.Drawing.Color.Black;
-                ExchangeLabel.ForeColor = System.Drawing.Color.Black;
+                ResultLabel.ForeColor = (Color)selectedLanguageElements?.ResultText;
+                ExchangeLabel.ForeColor = (Color)selectedLanguageElements?.ExchangeText;
 
-                ConvertButton.BackColor = System.Drawing.Color.PowderBlue;
-                ConvertButton.ForeColor = System.Drawing.Color.Black;
-                ConvertButton.FlatAppearance.BorderColor = System.Drawing.Color.PowderBlue;
+                ConvertButton.BackColor = (Color)selectedLanguageElements?.ConvertBg;
+                ConvertButton.ForeColor = (Color)selectedLanguageElements?.ConvertText;
+                ConvertButton.FlatAppearance.BorderColor = (Color)selectedLanguageElements?.ConvertBorder;
 
-                CashAmountField.BorderStyle = BorderStyle.None;
-
-                SettingsButton.Image = Image.FromFile("../../../icons/settings_new_icon_grey.png");
-            }
-            else if (colorTheme == "DARK")
-            {
-                this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                CashAmountField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                OriginalCurrencyField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                SecondCurrencyField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                ResultField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                ExchangeField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                CashAmountField.ForeColor = System.Drawing.Color.White;
-                OriginalCurrencyField.ForeColor = System.Drawing.Color.White;
-                SecondCurrencyField.ForeColor = System.Drawing.Color.White;
-
-                ResultField.ForeColor = System.Drawing.Color.White;
-                ExchangeField.ForeColor = System.Drawing.Color.White;
-
-                CashAmountLabel.ForeColor = System.Drawing.Color.White;
-                OriginalCurrencyLabel.ForeColor = System.Drawing.Color.White;
-                SecondCurrencyLabel.ForeColor = System.Drawing.Color.White;
-
-                ResultLabel.ForeColor = System.Drawing.Color.White;
-                ExchangeLabel.ForeColor = System.Drawing.Color.White;
-
-                ConvertButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(74)))), ((int)(((byte)(232)))));
-                ConvertButton.ForeColor = System.Drawing.Color.White;
-                ConvertButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(74)))), ((int)(((byte)(232)))));
-
-                CashAmountField.BorderStyle = BorderStyle.FixedSingle;
-
-                SettingsButton.Image = Image.FromFile("../../../icons/settings_new_icon_white.png");
+                CashAmountField.BorderStyle = (BorderStyle)selectedLanguageElements?.CashAmountBorderStyle;
             }
 
         }
