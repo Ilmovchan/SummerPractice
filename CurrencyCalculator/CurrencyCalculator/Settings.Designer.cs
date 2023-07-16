@@ -47,7 +47,7 @@
             this.ReturnButton.Image = ((System.Drawing.Image)(resources.GetObject("ReturnButton.Image")));
             this.ReturnButton.Location = new System.Drawing.Point(12, 12);
             this.ReturnButton.Name = "ReturnButton";
-            this.ReturnButton.Size = new System.Drawing.Size(22, 24);
+            this.ReturnButton.Size = new System.Drawing.Size(27, 24);
             this.ReturnButton.TabIndex = 0;
             this.ReturnButton.TabStop = false;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
@@ -110,7 +110,7 @@
             this.DefaultOriginalCurrencyField.TabIndex = 4;
             this.DefaultOriginalCurrencyField.Text = "Валюта за замовчуванням";
             // 
-            // ChangeNumbersAfterSeparatorField
+            // NumbersAfterSeparatorField
             // 
             this.NumbersAfterSeparatorField.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NumbersAfterSeparatorField.Hexadecimal = true;
@@ -120,7 +120,7 @@
             0,
             0,
             0});
-            this.NumbersAfterSeparatorField.Name = "ChangeNumbersAfterSeparatorField";
+            this.NumbersAfterSeparatorField.Name = "NumbersAfterSeparatorField";
             this.NumbersAfterSeparatorField.Size = new System.Drawing.Size(33, 21);
             this.NumbersAfterSeparatorField.TabIndex = 6;
             this.NumbersAfterSeparatorField.Value = new decimal(new int[] {

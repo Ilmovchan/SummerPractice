@@ -20,7 +20,6 @@ namespace CurrencyCalculator
     {
         private MainMenu mainMenu;
         Dictionary<string, string[]> colorSchemeLanguage;
-        string[] languageList = { "English", "Ukrainian" };
 
 
 
@@ -70,14 +69,6 @@ namespace CurrencyCalculator
             this.Close();
         }
 
-        private Dictionary<string, string[]> CreateColorSchemes()
-        {
-            Dictionary<string, string[]> schemes = new Dictionary<string, string[]>();
-            schemes["Light"] = new string[] { "Light", "Світла"};
-            schemes["Dark"] = new string[] { "Dark", "Темна"};
-            return schemes;
-        }
-
         private void ChangeLanguage(string language)
         {
             Language languageData = new Language();
@@ -117,57 +108,20 @@ namespace CurrencyCalculator
 
                 NumbersAfterSeparatorLabel.ForeColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorLabelText;
                 NumbersAfterSeparatorField.ForeColor = (Color)selectedColorThemeElements?.NumbersAfterSeparatorFieldText;
-
-                AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_black.png");
-                ReturnButton.Image = Image.FromFile("../../../icons/back_icon_black.png");
             }
+        }
 
-/*            if (colorTheme == "LIGHT")
-            {
-                this.BackColor = System.Drawing.Color.WhiteSmoke;
-
-                LanguageField.BackColor = System.Drawing.SystemColors.Window;
-                ColorThemeField.BackColor = System.Drawing.SystemColors.Window;
-                DefaultOriginalCurrencyField.BackColor = System.Drawing.SystemColors.Window;
-
-                NumbersAfterSeparatorLabel.BackColor = System.Drawing.SystemColors.Window;
-                NumbersAfterSeparatorField.BackColor = System.Drawing.SystemColors.Window;
-
-                LanguageField.ForeColor = System.Drawing.Color.Black;
-                ColorThemeField.ForeColor = System.Drawing.Color.Black;
-                DefaultOriginalCurrencyField.ForeColor = System.Drawing.Color.Black;
-
-                NumbersAfterSeparatorLabel.ForeColor = System.Drawing.Color.Black;
-                NumbersAfterSeparatorField.ForeColor = System.Drawing.Color.Black;
-
-                AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_black.png");
-                ReturnButton.Image = Image.FromFile("../../../icons/back_icon_black.png");
-            }
-            if (colorTheme == "DARK")
-            {
-                this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                LanguageField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                ColorThemeField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                DefaultOriginalCurrencyField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                NumbersAfterSeparatorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-                NumbersAfterSeparatorField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(42)))), ((int)(((byte)(47)))));
-
-                LanguageField.ForeColor = System.Drawing.Color.White;
-                ColorThemeField.ForeColor = System.Drawing.Color.White;
-                DefaultOriginalCurrencyField.ForeColor = System.Drawing.Color.White;
-
-                NumbersAfterSeparatorLabel.ForeColor = System.Drawing.Color.White;
-                NumbersAfterSeparatorField.ForeColor = System.Drawing.Color.White;
-
-                AcceptButton.Image = Image.FromFile("../../../icons/icon_accept_circle_white.png");
-                ReturnButton.Image = Image.FromFile("../../../icons/back_icon_white.png");
-            }*/
+        private Dictionary<string, string[]> CreateColorSchemes()
+        {
+            Dictionary<string, string[]> schemes = new Dictionary<string, string[]>();
+            schemes["Light"] = new string[] { "Light", "Світла" };
+            schemes["Dark"] = new string[] { "Dark", "Темна" };
+            return schemes;
         }
 
         private void SetLanguageSetting(string language)
         {
+            string[] languageList = { "English", "Ukrainian" };
             foreach (string element in languageList)
             {
                 if (element == language) Properties.Settings.Default.Language = language;
