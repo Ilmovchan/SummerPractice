@@ -49,13 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\MainMenu\Language\English.cs" />
-    <Compile Include="Config\MainMenu\Language\LanguageTest.cs" />
-    <Compile Include="Config\MainMenu\Language\Ukrainian.cs" />
-    <Compile Include="Config\Settings\Language\English.cs" />
-    <Compile Include="Config\Settings\Language\Ukrainian.cs" />
-    <Compile Include="CurrencyInfo.cs" />
-    <Compile Include="CurrencyResponse.cs" />
+    <Compile Include="Config\UI\MainMenu\ColorTheme.cs" />
+    <Compile Include="Config\UI\MainMenu\Language.cs" />
+    <Compile Include="Config\UI\Settings\Language.cs" />
+    <Compile Include="Config\API\CurrencyInfo.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>

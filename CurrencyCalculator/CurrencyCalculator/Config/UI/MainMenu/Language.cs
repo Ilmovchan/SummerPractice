@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyCalculator.Config.MainMenu.Language
+namespace CurrencyCalculator.Config.UI.MainMenu
 {
-    public class LanguageTest
+    public class Language
     {
         public LanguageText English { get; set; }
         public LanguageText Ukrainian { get; set; }
 
-        public LanguageTest()
+        public Language()
         {
             English = new LanguageText
             {
@@ -23,6 +23,7 @@ namespace CurrencyCalculator.Config.MainMenu.Language
                 Result = "Result:",
                 Convert = "Convert",
             };
+
 
             Ukrainian = new LanguageText
             {

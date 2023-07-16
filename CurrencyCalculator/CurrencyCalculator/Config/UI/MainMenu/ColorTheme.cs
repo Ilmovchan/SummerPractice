@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyCalculator
+namespace CurrencyCalculator.Config.UI.MainMenu
 {
-    public class CurrencyResponse
+    public class ColorTheme
     {
-        public CurrencyInfo rates { get; set; }
+
     }
 }

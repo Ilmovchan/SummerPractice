@@ -14,7 +14,8 @@ using Newtonsoft.Json;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
-using CurrencyCalculator.Config.MainMenu.Language;
+using CurrencyCalculator.Config.UI.MainMenu;
+using CurrencyCalculator.Config.API;
 
 namespace CurrencyCalculator
 {
@@ -109,11 +110,11 @@ namespace CurrencyCalculator
 
         public void ChangeLanguage(string language)
         {
+            Language languageData = new Language();
 
-            LanguageTest languageData = new LanguageTest();
+            string selectedLanguage = language;
+            LanguageText languageText = typeof(Language).GetProperty(selectedLanguage)?.GetValue(languageData) as LanguageText;
 
-            string selectedLanguage = Convert.ToString(Properties.Settings.Default["Language"]);
-            LanguageText languageText = typeof(LanguageTest).GetProperty(selectedLanguage)?.GetValue(languageData) as LanguageText;
             this.Text = languageText?.Title;
             CashAmountLabel.Text = languageText?.CashAmount;
             OriginalCurrencyLabel.Text = languageText?.OriginalCurrency;

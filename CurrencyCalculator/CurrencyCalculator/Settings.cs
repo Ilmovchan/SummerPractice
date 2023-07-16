@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Windows.Forms.VisualStyles;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using CurrencyCalculator.Config.UI.Settings;
 
 namespace CurrencyCalculator
 {
@@ -79,26 +80,17 @@ namespace CurrencyCalculator
 
         private void ChangeLanguage(string language)
         {
-            if (language == "Українська")
-            {
-                this.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.Title;
-                LanguageField.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.Language;
-                ColorThemeField.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.ColorTheme;
-                NumbersAfterSeparatorLabel.Text = CurrencyCalculator.Config.Settings.Language.Ukrainian.NumbersAfterSeparator;
+            Language languageData = new Language();
 
-                ColorThemeField.Items[0] = CurrencyCalculator.Config.Settings.Language.Ukrainian.ColorThemeItem1;
-                ColorThemeField.Items[1] = CurrencyCalculator.Config.Settings.Language.Ukrainian.ColorThemeItem2;
-            }
-            else if (language == "English")
-            {
-                this.Text = CurrencyCalculator.Config.Settings.Language.English.Title;
-                LanguageField.Text = CurrencyCalculator.Config.Settings.Language.English.Language;
-                ColorThemeField.Text = CurrencyCalculator.Config.Settings.Language.English.ColorTheme;
-                NumbersAfterSeparatorLabel.Text = CurrencyCalculator.Config.Settings.Language.English.NumbersAfterSeparator;
+            string selectedLanguage = language;
+            LanguageText languageText = typeof(Language).GetProperty(selectedLanguage)?.GetValue(languageData) as LanguageText;
 
-                ColorThemeField.Items[0] = CurrencyCalculator.Config.Settings.Language.English.ColorThemeItem1;
-                ColorThemeField.Items[1] = CurrencyCalculator.Config.Settings.Language.English.ColorThemeItem2;
-            }
+            this.Text = languageText?.Title;
+            LanguageField.Text = languageText?.Language;
+            ColorThemeField.Text = languageText?.ColorTheme;
+            NumbersAfterSeparatorLabel.Text = languageText?.NumbersAfterSeparator;
+            ColorThemeField.Items[0] = languageText?.ColorThemeItem0;
+            ColorThemeField.Items[1] = languageText?.ColorThemeItem1;
         }
 
         private void ChangeColorTheme(string colorTheme)
