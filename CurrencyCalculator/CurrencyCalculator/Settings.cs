@@ -80,6 +80,8 @@ namespace CurrencyCalculator
             LanguageField.Text = languageText?.Language;
             ColorThemeField.Text = languageText?.ColorTheme;
             NumbersAfterSeparatorLabel.Text = languageText?.NumbersAfterSeparator;
+            DefaultOriginalCurrencyField.Text = languageText?.DefaultOriginalCurrency;
+
             ColorThemeField.Items[0] = languageText?.ColorThemeItem0;
             ColorThemeField.Items[1] = languageText?.ColorThemeItem1;
         }
@@ -121,10 +123,20 @@ namespace CurrencyCalculator
 
         private void SetLanguageSetting(string language)
         {
-            string[] languageList = { "English", "Ukrainian" };
-            foreach (string element in languageList)
+
+            var languageProperties = typeof(Language).GetProperties();
+
+            foreach (var property in languageProperties)
             {
-                if (element == language) Properties.Settings.Default.Language = language;
+                if (property.Name == language)
+                {
+
+                    Properties.Settings.Default.Language = language;
+
+                    Properties.Settings.Default.Save();
+
+                    break;
+                }
             }
         }
 
@@ -147,8 +159,18 @@ namespace CurrencyCalculator
 
         private void SetDefaultOriginalCurrencySetting(string defaultOriginalCurrency)
         {
-            if (defaultOriginalCurrency == "") return;
-            else Properties.Settings.Default.OriginalCurrency = defaultOriginalCurrency;
+            if (defaultOriginalCurrency == "Default currency" || defaultOriginalCurrency == "Валюта за замовчуванням")
+            {
+                return;
+            }
+            else if (string.IsNullOrEmpty(defaultOriginalCurrency))
+            {
+                Properties.Settings.Default.OriginalCurrency = string.Empty; // Очистить значение свойства OriginalCurrency
+            }
+            else
+            {
+                Properties.Settings.Default.OriginalCurrency = defaultOriginalCurrency;
+            }
         }
 
         private void SetNumbersAfterSeparatorSetting(int numbersAfterSeparator)

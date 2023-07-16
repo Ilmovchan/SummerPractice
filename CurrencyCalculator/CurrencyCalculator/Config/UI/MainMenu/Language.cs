@@ -15,6 +15,8 @@ namespace CurrencyCalculator.Config.UI.MainMenu
         {
             English = new LanguageElements
             {
+                Name = "English",
+
                 Title = "Currency calculator",
                 CashAmount = "Enter cash amount:",
                 OriginalCurrency = "Choose original currency:",
@@ -27,6 +29,8 @@ namespace CurrencyCalculator.Config.UI.MainMenu
 
             Ukrainian = new LanguageElements
             {
+                Name = "Українська",
+
                 Title = "Валютний калькулятор",
                 CashAmount = "Введіть кількість грошей:",
                 OriginalCurrency = "Оберіть валюту з якої хочете конвертувати:",
@@ -39,6 +43,7 @@ namespace CurrencyCalculator.Config.UI.MainMenu
     }
     public class LanguageElements
     {
+        public string Name { get; set; }
         public string Title { get; set; }
         public string CashAmount { get; set; }
         public string OriginalCurrency { get; set; }
